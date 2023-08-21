@@ -54,4 +54,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
 
-For questions or support, please contact [KENNEDY OTIENO](otiken001@gmail.com). / [DARREN HARIS](thehar)
+For questions or support, please contact [KennOtieno](otiken001@gmail.com). / [theharriscode](theharriscode@gmail.com)
