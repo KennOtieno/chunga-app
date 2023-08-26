@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "719373967935",
+    "firebase_url": "https://chunga-app-default-rtdb.firebaseio.com",
+    "project_id": "chunga-app",
+    "storage_bucket": "chunga-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719373967935:android:3bea97bdcdd111a3ec8e8a",
+        "android_client_info": {
+          "package_name": "com.example.chunga_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "719373967935-umd27ql1na47bhtcecc0dn7aqrql2c49.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCQk1PkmBcD6XTZqOVklJJ850A_g5BMQQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "719373967935-umd27ql1na47bhtcecc0dn7aqrql2c49.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719373967935:android:4aee1d748469bb70ec8e8a",
+        "android_client_info": {
+          "package_name": "com.example.chunga_cash_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "719373967935-umd27ql1na47bhtcecc0dn7aqrql2c49.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCQk1PkmBcD6XTZqOVklJJ850A_g5BMQQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "719373967935-umd27ql1na47bhtcecc0dn7aqrql2c49.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
