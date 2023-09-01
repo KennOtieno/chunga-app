@@ -2,6 +2,7 @@ package com.example.chunga_cash_app
 
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -9,6 +10,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.chunga_cash_app.databinding.ActivityMainBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.lang.Exception
@@ -20,17 +22,20 @@ class InsertionActivity: AppCompatActivity() {
     private lateinit var spinnerCourses: Spinner
     private lateinit var btnInsertData: Button
     private lateinit var studentDbRef: DatabaseReference
+    private lateinit var binding: ActivityMainBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         //grabbing input & button ID
         etName = findViewById(R.id.etName)
         etPassword = findViewById(R.id.etPassword)
 //        spinnerCourses = findViewById(R.id.spinnerCourses)
-        btnInsertData = findViewById(R.id.btnInsertData)
+//        btnInsertData = findViewById(R.id.btnInsertData)
 
         studentDbRef = FirebaseDatabase.getInstance().getReference("Students")
 
@@ -38,7 +43,9 @@ class InsertionActivity: AppCompatActivity() {
 //        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, courses)
 //        spinnerCourses.adapter = adapter
 
-        btnInsertData.setOnClickListener {
+        binding.btnInsertData.setOnClickListener {
+
+            Log.d("Insertion Activity", "Button clicked")
             try {
                 insertStudentData();
             }
@@ -65,7 +72,15 @@ class InsertionActivity: AppCompatActivity() {
             studentDbRef.push().setValue(student) // pushing to database
             Toast.makeText(this@InsertionActivity,"Student Submitted", Toast.LENGTH_SHORT).show() // confirmation message
         }
-    } // listener for when user clicks button
+    }
+
+
+
+
+
+
+
+// listener for when user clicks button
 
 
 
