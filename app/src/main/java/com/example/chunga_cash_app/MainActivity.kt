@@ -15,12 +15,8 @@ import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var etName : EditText
-    private lateinit var etStudentPin : EditText
-    private lateinit var etAdminNum : EditText
     private lateinit var studentDbRef: DatabaseReference
     private lateinit var binding: ActivityMainBinding
-    private lateinit var dbName : String
 
 
 
@@ -61,15 +57,15 @@ class MainActivity : AppCompatActivity() {
 
 
         if (name.isEmpty()){
-            etName.error = "Please enter student name"
+            binding.etName.error = "Please enter student name"
         }
 
         else if (studentPin == null) {
-            etStudentPin.error = "Please enter a 4 digit pin"
+            binding.etStudentPin.error = "Please enter a 4 digit pin"
         }
 
         else if(adminNum == null) {
-            etAdminNum.error = "Please enter admission number"
+            binding.etAdminNum.error = "Please enter admission number"
         }
 
         else {
