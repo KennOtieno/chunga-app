@@ -10,16 +10,18 @@ import android.widget.Toast
 import com.example.chunga_cash_app.databinding.ActivityMainBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var etName : EditText
-    private lateinit var etPassword : EditText
-    private lateinit var spinnerCourses: Spinner
-    private lateinit var btnInsertData: Button
+    private lateinit var etStudentPin : EditText
+    private lateinit var etAdminNum : EditText
     private lateinit var studentDbRef: DatabaseReference
     private lateinit var binding: ActivityMainBinding
+    private lateinit var dbName : String
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,16 +31,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         //grabbing input & button ID
-        etName = findViewById(R.id.etName)
-        etPassword = findViewById(R.id.etPassword)
-//        spinnerCourses = findViewById(R.id.spinnerCourses)
-//        btnInsertData = findViewById(R.id.btnInsertData)
+//        etName = findViewById(R.id.etName)
+//        etStudentPin = findViewById(R.id.etStudentPin)
+//        etAdminNum = findViewById(R.id.etAdminNum)
+//
+//        dbName = etAdminNum.text.toString()
+//        studentDbRef = FirebaseDatabase.getInstance().getReference("Students")
+//        studentDbRef.child(dbName)
 
-        studentDbRef = FirebaseDatabase.getInstance().getReference("Students")
-
-//        val courses = arrayOf("Course 1", "Course 2", "Course 3")
-//        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, courses)
-//        spinnerCourses.adapter = adapter
 
         binding.btnInsertData.setOnClickListener {
 
@@ -53,22 +53,38 @@ class MainActivity : AppCompatActivity() {
     }
     // inserting Data function
     private fun insertStudentData() {
-        var name: String = etName.text.toString()
-        var password: String = etPassword.text.toString()
-//            var course: String = spinnerCourses.selectedItem.toString()
-        val student = Students(name, password) // creating a new student
+        var name = binding.etName.text.toString()
+        var studentPinText = binding.etStudentPin.text.toString()
+        var studentPin : Int? = studentPinText.toIntOrNull()
+        var adminNumText = binding.etAdminNum.text.toString()
+        var adminNum : Int? =  adminNumText.toIntOrNull()
 
 
         if (name.isEmpty()){
             etName.error = "Please enter student name"
         }
 
-        else if (password.isEmpty()){
-            etPassword.error = "Please enter password"
+        else if (studentPin == null) {
+            etStudentPin.error = "Please enter a 4 digit pin"
         }
+
+        else if(adminNum == null) {
+            etAdminNum.error = "Please enter admission number"
+        }
+
         else {
-            studentDbRef.push().setValue(student)
-            Toast.makeText(this@MainActivity,"Student Submitted", Toast.LENGTH_SHORT).show() // confirmation message
-        } // pushing to database
+            studentDbRef = FirebaseDatabase.getInstance().getReference("Students")
+            val student = Students(name, studentPin, adminNum) // creating a new student
+            studentDbRef.child(adminNumText).setValue(student).addOnSuccessListener {
+                binding.etAdminNum.text.clear()
+                binding.etName.text.clear()
+                binding.etStudentPin.text.clear()
+                Toast.makeText(this@MainActivity, "Student Submitted", Toast.LENGTH_SHORT)
+                    .show() // confirmation message
+            }.addOnCanceledListener {
+                Toast.makeText(this@MainActivity, "Student could not be added at this time.", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
     }
 }

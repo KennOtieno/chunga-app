@@ -16,12 +16,28 @@
         android:hint="Enter Name" />
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/etStudentPin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Password"
-        android:layout_marginTop="20dp" />
+        android:hint="Enter 4 Digit Pin"
+        android:layout_marginTop="20dp"
+        android:inputType="number"/>
 
+
+<!--    <EditText-->
+<!--        android:id="@+id/etEmail"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Enter Email"-->
+<!--        android:layout_marginTop="20dp" />-->
+
+    <EditText
+        android:id="@+id/etAdminNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Admission Number"
+        android:layout_marginTop="20dp"
+        android:inputType="number"/>
     
     <Button
         android:id="@+id/btnInsertData"
