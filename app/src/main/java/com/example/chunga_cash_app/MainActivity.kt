@@ -27,16 +27,6 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        //grabbing input & button ID
-//        etName = findViewById(R.id.etName)
-//        etStudentPin = findViewById(R.id.etStudentPin)
-//        etAdminNum = findViewById(R.id.etAdminNum)
-//
-//        dbName = etAdminNum.text.toString()
-//        studentDbRef = FirebaseDatabase.getInstance().getReference("Students")
-//        studentDbRef.child(dbName)
-
-
         binding.btnInsertData.setOnClickListener {
 
             Log.d("Insertion Activity", "Button clicked")
