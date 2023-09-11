@@ -29,24 +29,30 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnInsertData.setOnClickListener {
 
-            Log.d("Insertion Activity", "Button clicked")
+            Log.d("Insertion Activity", "Button clicked") // check logcat
             try {
                 insertStudentData();
             }
             catch (e: Exception) {
-                Log.e("Insertion Activity", "Error inserting student data", e)
+                Log.e("Insertion Activity", "Error inserting student data", e) //check logcat
             }
         }
     }
-    // inserting Data function
+
+    // inserting student data to firebase
     private fun insertStudentData() {
         var name = binding.etName.text.toString()
+
+        // collecting pin as String then converting to int
         var studentPinText = binding.etStudentPin.text.toString()
         var studentPin : Int? = studentPinText.toIntOrNull()
+
+        //collecting admin number as String then converting to int
         var adminNumText = binding.etAdminNum.text.toString()
         var adminNum : Int? =  adminNumText.toIntOrNull()
 
 
+        // Checking if input values are empty
         if (name.isEmpty()){
             binding.etName.error = "Please enter student name"
         }
@@ -59,6 +65,7 @@ class MainActivity : AppCompatActivity() {
             binding.etAdminNum.error = "Please enter admission number"
         }
 
+        // Otherwise add to database
         else {
             studentDbRef = FirebaseDatabase.getInstance().getReference("Students")
             val student = Students(name, studentPin, adminNum) // creating a new student
@@ -68,8 +75,10 @@ class MainActivity : AppCompatActivity() {
                 binding.etStudentPin.text.clear()
                 Toast.makeText(this@MainActivity, "Student Submitted", Toast.LENGTH_SHORT)
                     .show() // confirmation message
+                // redirection to SearchActivity view
                 val intent = Intent(this@MainActivity, SearchActivity::class.java)
                 startActivity(intent)
+                // if fails, show toast message
             }.addOnCanceledListener {
                 Toast.makeText(this@MainActivity, "Student could not be added at this time.", Toast.LENGTH_SHORT)
                     .show()
