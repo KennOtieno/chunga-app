@@ -1,5 +1,6 @@
 package com.example.chunga_cash_app
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -77,6 +78,8 @@ class MainActivity : AppCompatActivity() {
                 binding.etStudentPin.text.clear()
                 Toast.makeText(this@MainActivity, "Student Submitted", Toast.LENGTH_SHORT)
                     .show() // confirmation message
+                val intent = Intent(this@MainActivity, SearchActivity::class.java)
+                startActivity(intent)
             }.addOnCanceledListener {
                 Toast.makeText(this@MainActivity, "Student could not be added at this time.", Toast.LENGTH_SHORT)
                     .show()
