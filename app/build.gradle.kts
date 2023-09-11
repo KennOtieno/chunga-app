@@ -34,8 +34,12 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        viewBinding = true
+
+//    buildFeatures {
+//        viewBinding = true
+//    } was getting java.lang errors with code
+    viewBinding {
+        enable = true;
     }
 
 }
