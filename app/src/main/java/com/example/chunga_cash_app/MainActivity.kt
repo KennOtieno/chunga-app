@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         binding.btnInsertData.setOnClickListener {
-
             Log.d("Insertion Activity", "Button clicked") // check logcat
             try {
                 insertStudentData();
@@ -105,7 +104,7 @@ class MainActivity : AppCompatActivity() {
 
                     if (dataSnapshot.exists()) {
 
-                        //val admissionInfo = dataSnapshot.getValue(YourDataModule::class.java)
+                        // redirection to Search Activity
                         val intent = Intent(this@MainActivity, SearchActivity::class.java)
                         intent.putExtra("adminInput", admissionNumber)
                         showToast("Search for admission number: $admissionNumber")
@@ -131,8 +130,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showToast(message: String) {
-
-
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
