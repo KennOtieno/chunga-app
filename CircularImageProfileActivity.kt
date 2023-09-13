@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.circular_image_profile.*
 import java.awt.PopupMenu
 
-class YourActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,13 +57,13 @@ class YourActivity : AppCompatActivity() {
                 R.id.menu_settings -> {
                     // When settings is selected, it shows settings
                     // It opens settings activity when clicked
-                    val intent = Intent(this, SettingsActiivity::class.java)
+                    val intent = Intent(this, SettingsActivity::class.java)
                     startActivity(intent)
                 }
                 R.id.menu_log_out -> {
                     // When log out is selected, it signs out
                     // It opens the sign out activity when clicked
-                    FirebaseAuth.getInstance().signout
+                    FirebaseAuth.getInstance().signOut
                     // Optionally you can navigate to sign im activity
                     val intent = Intent(this, SignOutActivity::class.java)
                     startActivity(intent)
