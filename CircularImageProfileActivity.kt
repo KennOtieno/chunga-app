@@ -49,8 +49,8 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 R.id.menu_administrator_account -> {
-                    // When administrator account is selected, it shows details
-                    // It opens the administrator activity when clicked
+                    // When administrator account is selected, it opens AdministratorActivity
+                    // It opens the AdministratorActivity when clicked
                     val  intent = Intent(this, AdministratorActivity::class.java)
                     startActivity(intent)
                 }
