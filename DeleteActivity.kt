@@ -17,11 +17,48 @@ private fun showDeleteDialog() {
     builder.setView(input)
 
     builder.setPositiveButton("Yes") {dialog, which ->
-        // Admission Number from the Students data class is fetched from the DB , then prompt message pops up
+        // Fetch Admission Number from database
         val admissionNumber = input.text.toString()
 
         // Querry DB for the Admission Number
         val databaseReference = FirebaseDatabase.getInstance().getReference("Students")
         val query = databaseReference.orderByChild("admissionNumber").equalTo(admission_Number)
+    }
+    builder.setNegativeButton("No") {dialog, which ->
+        dialog.cancel()
+    }
+    builder.show()
+
+    private fun showToast(message: String) {
+
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show
+    }
+}
+
+private fun showDeleteDialog() {
+    val builde = AlertDialog.Builder(this)
+    builder.setTitle("INSERT ADMIN PASSWORD")
+
+    val input = EditText(this)
+    builder.setView(input)
+
+    builder.setPositiveButtton("OK") {dialog, which ->
+        // Fetch Admin Password from database
+        val password = input.text.toString()
+
+        // Querry DataBase for Admin Password
+        val databaseReference = FirebaseDatabase.getInstance().getReference("Admin")
+        val query = databaseReference.orderByChild("password").equalTo(password)
+
+        showToast("Deleted")
+    }
+    builder.setNegativeButton("Cancel") {dialog, which ->
+        dialog.cancel()
+    }
+    builder.show()
+
+    private fun showToast(message: String) {
+
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show
     }
 }
