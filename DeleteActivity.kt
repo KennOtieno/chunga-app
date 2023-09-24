@@ -1,16 +1,19 @@
 import android.os.Bundle
 import android.appcompatactivity.app.AppCompatActivity
-import android.appcomaptactivity.app.AlertDialog
+import androidx.appcomaptactivity.app.AlertDialog
 import android.app.Activity
 import android.widget.Toast
+import android.widget.EditText
+import com.google.firebase.database.FirebaseDatabase
 
-class DeleteActivity : AppCompatActivity() {} {
-    override fun onCreate(savedInstanceState : Bundle?)
-    super.onCreate(savedInstanceState)
+class DeleteActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState : Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 }
 
-private fun showDeleteDialog() {
-    val builde = AlertDialog.Builder(this)
+private fun showConfirmationDialog() {
+    val builder = AlertDialog.Builder(this)
     builder.setTitle("ARE YOU SURE YOU WANT TO DELETE")
 
     val input = EditText(this)
@@ -24,15 +27,12 @@ private fun showDeleteDialog() {
         val databaseReference = FirebaseDatabase.getInstance().getReference("Students")
         val query = databaseReference.orderByChild("admissionNumber").equalTo(admission_Number)
     }
+
     builder.setNegativeButton("No") {dialog, which ->
         dialog.cancel()
     }
+
     builder.show()
-
-    private fun showToast(message: String) {
-
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show
-    }
 }
 
 private fun showDeleteDialog() {
