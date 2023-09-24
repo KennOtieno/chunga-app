@@ -35,7 +35,7 @@ private fun showConfirmationDialog() {
     builder.show()
 }
 
-private fun showDeleteDialog() {
+private fun showAdminPasswordDialog() {
     val builde = AlertDialog.Builder(this)
     builder.setTitle("INSERT ADMIN PASSWORD")
 
@@ -50,15 +50,21 @@ private fun showDeleteDialog() {
         val databaseReference = FirebaseDatabase.getInstance().getReference("Admin")
         val query = databaseReference.orderByChild("password").equalTo(password)
 
-        showToast("Deleted")
+        // Check if password is correct
+        querry.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapShot) {
+                // If password is correct proceed with Deletion
+                showToast("Removed - Delete")
+            } else {
+                // If password is incorrect we give error message with '!' in colour red
+                showToast("Incorrect Password, Try Again - Not Deleted")
+            }
+        })
     }
+
     builder.setNegativeButton("Cancel") {dialog, which ->
         dialog.cancel()
     }
+
     builder.show()
-
-    private fun showToast(message: String) {
-
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show
-    }
 }
