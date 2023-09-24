@@ -25,7 +25,7 @@ private fun showConfirmationDialog() {
 
         // Querry DB for the Admission Number
         val databaseReference = FirebaseDatabase.getInstance().getReference("Students")
-        val query = databaseReference.orderByChild("admissionNumber").equalTo(admission_Number)
+        val query = databaseReference.orderByChild("admissionNumber").equalTo(admissionNumber)
     }
 
     builder.setNegativeButton("No") {dialog, which ->
