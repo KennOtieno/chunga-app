@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                     if (dataSnapshot.exists()) {
 
                         // redirection to Search Activity
-                        val intent = Intent(this@MainActivity, SearchActivity::class.java)
+                        val intent = Intent(this@MainActivity, StartupActivity::class.java)
                         intent.putExtra("adminInput", admissionNumber)
                         showToast("Search for admission number: $admissionNumber")
                         startActivity(intent)
