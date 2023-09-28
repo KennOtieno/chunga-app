@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/menu_administrator_account"
+            android:title="Admin Account" />
+
+        <item
+            android:id="@+id/menu_register_student"
+            android:title="Add Student" />
+
+        <item
+            android:id="@+id/menu_remove_student"
+            android:title="Remove Student" />
+
+        <item
+            android:id="@+id/menu_search"
+            android:title="Search" />
+
+        <item
+            android:id="@+id/menu_settings"
+            android:title="Settings" />
+
+        <item
+            android:id="@+id/menu_log_out"
+            android:title="Log Out" />
+]
+    </group>
+</menu>
