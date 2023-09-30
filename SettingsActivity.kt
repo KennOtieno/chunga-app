@@ -15,11 +15,11 @@ class SettingsActivity : AppCompatActivity() {
 
         buttonAdminAccount.setOnClickListener { view, ->
             // Opens AdminAccountActivity when selected/ pressed
-            startActivity(Intenet(this, AdminAccountActivity::class.java))
+            startActivity(Intent(this, AdminAccountActivity::class.java))
         }
 
-        buttonAppVersion&Updates.setOnClickListener { view, ->
-            // Opens App Version & Updates Activitty when clicked
+        buttonAppVersionAndUpdates.setOnClickListener { view, ->
+            // Opens AppVersionAndUpdates Activitty when clicked
             startActivity(Intent(this, AppVersion& Updates ::class.java))
         }
 
