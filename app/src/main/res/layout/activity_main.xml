@@ -1,59 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <Button
-        android:id="@+id/searchButton"
+    <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search"
-        android:layout_marginTop="-200dp"
-        android:layout_centerInParent="true"/>
+        android:layout_height="match_parent"
+        android:id="@+id/nav_views"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/main_menu"
+        android:layout_gravity="start"
+        />
 
-    <EditText
-        android:id="@+id/etName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Enter Name" />
-
-    <EditText
-        android:id="@+id/etStudentPin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter 4 Digit Pin"
-        android:layout_marginTop="20dp"
-        android:inputType="number"/>
-
-
-<!--    <EditText-->
-<!--        android:id="@+id/etEmail"-->
+<!--    <ScrollView-->
 <!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:hint="Enter Email"-->
-<!--        android:layout_marginTop="20dp" />-->
+<!--        android:layout_height="match_parent">-->
 
-    <EditText
-        android:id="@+id/etAdminNum"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Admission Number"
-        android:layout_marginTop="20dp"
-        android:inputType="number"/>
-    
-    <Button
-        android:id="@+id/btnInsertData"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Insert Data"
-        android:textAllCaps="false" />
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+<!--            app:navigationIcon="@drawable/circular_profile" />-->
+
+        <ImageView
+            android:id="@+id/circularProfileImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/circular_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:clickable="true"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--    </ScrollView>-->
+</androidx.drawerlayout.widget.DrawerLayout>

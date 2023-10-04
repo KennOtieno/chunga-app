@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group>
+    <group android:checkableBehavior="single">
         <item
             android:id="@+id/menu_administrator_account"
-            android:title="Admin Account" />
-
+            android:title="Admin Account"
+            android:icon="@drawable/admin_account_icon"/>
         <item
             android:id="@+id/menu_register_student"
-            android:title="Add Student" />
-
+            android:title="Add Student"
+            android:icon="@drawable/add_student_icon"/>
         <item
             android:id="@+id/menu_remove_student"
-            android:title="Remove Student" />
-
+            android:title="Remove Student"
+            android:icon="@drawable/remove_student_icon"/>
         <item
             android:id="@+id/menu_search"
-            android:title="Search" />
-
+            android:title="Search"
+            android:icon="@drawable/search_icon"/>
         <item
             android:id="@+id/menu_settings"
-            android:title="Settings" />
-
+            android:title="Settings"
+            android:icon="@drawable/settings_icon"/>
         <item
             android:id="@+id/menu_log_out"
-            android:title="Log Out" />
-]
+            android:title="Log Out"
+            android:icon="@drawable/logout_icon"/>
     </group>
 </menu>
