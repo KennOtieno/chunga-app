@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<!--    <Button-->
+<!--        android:id="@+id/searchButton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Search"-->
+<!--        android:layout_marginTop="-200dp"-->
+<!--        android:layout_centerInParent="true"/>-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/etName"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:hint="Enter Name" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/etStudentPin"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Enter 4 Digit Pin"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:inputType="number"/>-->
+
+
+<!--    &lt;!&ndash;    <EditText&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:id="@+id/etEmail"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:hint="Enter Email"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginTop="20dp" />&ndash;&gt;-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/etAdminNum"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Enter Admission Number"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:inputType="number"/>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btnInsertData"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Insert Data"-->
+<!--        android:textAllCaps="false"-->
+<!--        tools:layout_editor_absoluteX="0dp"-->
+<!--        tools:layout_editor_absoluteY="64dp" />-->
+</android.support.constraint.ConstraintLayout>

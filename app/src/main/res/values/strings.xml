@@ -1,9 +1,5 @@
 <resources>
     <string name="app_name">chunga_cash_app</string>
-
-    <array name="courses" >
-        <item>English</item>
-        <item>Math</item>
-        <item>Science</item>
-    </array>
+    <string name="nav_drawer_open">Open Navigation Drawer</string>
+    <string name="nav_drawer_close">Close Navigation Drawer</string>
 </resources>

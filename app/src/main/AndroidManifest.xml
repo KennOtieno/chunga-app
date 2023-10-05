@@ -13,11 +13,10 @@
         android:theme="@style/Theme.Chunga_cash_app"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".CircularImageProfileActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -26,7 +25,7 @@
             android:name=".SearchActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.DEFAULT" />
+                <action android:name="android.intent.action.DEAFULT" />
             </intent-filter>
         </activity>
 
