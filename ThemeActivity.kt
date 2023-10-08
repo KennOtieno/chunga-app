@@ -1,5 +1,5 @@
 import android.os.Bundle
-import androidx. appcomapatactivity.app.AppCompatActivity
+import androidx.appcomapatactivity.app.AppCompatActivity
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import androidx.appcompat.widget.SwitchCompat
@@ -10,7 +10,7 @@ class ThemeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_theme) // Change to xml layout file
 
-        val themeSwitch = findViewBySwitch<SwitchComapat>(R.id.themeSwitch)
+        val themeSwitch = findViewById<SwitchComapat>(R.id.themeSwitch)
         // Fetch current theme preference and set the switch state (default: LightMode)
         val isDarkModeEnabled = getThemePreferenceFromSharedPreference()
         themeSwitch.isChecked = isDarkModeEnabled
@@ -27,7 +27,7 @@ class ThemeActivity : AppCompatActivity() {
         if (isDarkModeEnabled) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
-            AppCompatDelegate.setDefailtNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
         // Recreate the activity to apply the new theme immediately
         recreate()
@@ -41,9 +41,9 @@ class ThemeActivity : AppCompatActivity() {
     }
 
     // Function to Update theme preference in SharedPreferences
-    private fun updateThemePreferenceInSharedPreference(isDarkEnablled: Boolean) {
+    private fun updateThemePreferenceInSharedPreferences(isDarkEnablled: Boolean) {
         val sharedPreferences: SharedPreferences =
-            PreferenceManager.getDefaultSharedPreference(this)
+            PreferenceManager.getDefaultSharedPreferences(this)
         val editor = sharedPreferences.edit()
         // "theme_preference" is the key to store the theme preference
         editor.putBoolean("theme_preference", isDarkModeEnabled)
