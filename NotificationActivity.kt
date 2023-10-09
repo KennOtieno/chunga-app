@@ -1,40 +1,25 @@
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import android.widget.CheckBox
-import android.widget.Spinner
-import android.widget.Switch
+import android.appcomptactivity.app.AppCompatActivity
+import android.widget.Button
+import android.content.SharedPreferences
+import androidx.preference.PreferenceManager
 
 class NotificationActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_notification) // xml layout
+        setContenetView(R.Layout.activity_notification) // xml layout file
 
-        val pushNotificationSwitch = findViewById<Switch>(R.id.pushNotificationSwitch)
-        val notificationSoundSpinner = findViewById<Spinner>(R.id.notificationSoundSpinner)
-        val messageNotificationCheckBox = findViewById<CheckBox>(R.id.messageNotificationCheckBox)
-        val updateNotificationCheckBox = findViewById<CheckBox>(R.id.updateNotificationCheckBox)
+        val preferencesButton = findViewById<Button>(R.id.preferencesButton)
+        val soundNotificaticationButton = findViewById<Button>(R.id.soundNotificationButton)
 
-        // Load notification settings from SharedPreferences and set UI elements accordingly
-        // ...
-
-        // Listen for changes in UI elements and update notification preferences accordingly
-        pushNotificationSwitch.setOnCheckedChangeListener { _, isChecked ->
-            // Handle push notification enable/disable
-            // Update corresponding SharedPreferences value
+        preferencesButton.setOnClickListener {
+            // Opens preferences activity when clicked
+            // User can select whether he wants to receive updates or Money Notifications(Daraja API)
         }
 
-        notificationSoundSpinner.setOnItemSelectedListener { /* Handle selected sound */ }
-
-        messageNotificationCheckBox.setOnCheckedChangeListener { _, isChecked ->
-            // Handle message notification preference change
-            // Update corresponding SharedPreferences value
+        soundNotificaticationButton.setONClickListener {
+            // Opens sound activity when clicked
+            // User can seect his own message ringtone and whether she wants vibration mode
         }
-
-        updateNotificationCheckBox.setOnCheckedChangeListener { _, isChecked ->
-            // Handle update notification preference change
-            // Update corresponding SharedPreferences value
-        }
-        // Add listeners for other notification preference checkboxes as needed
     }
 }
