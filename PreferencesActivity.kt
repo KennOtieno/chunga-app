@@ -10,14 +10,27 @@ class PreferencesActivity : AppCompatActivity() {
         val updatesNotification = findViewById<Switch>(R.id.updatesNotification)
         val mpesaNotification = findViewById<Switch>(R.id.mpesaNotification)
 
-        updatesNotification.setOnClickListener {
-            // When the switch is clicked it would either turn on or off
-            // If on updates notification shall be received if off notifications won't be received
+        updatesNotification.setOnCheckedChangedListener { _, isChecked ->
+            // Handles Updates notifictions
+            if(isChecked) {
+                // Updates Notifications will be enabled
+                // Logic for this to follow immediately
+            } else {
+                // Updates will be disabled and user won't receive Updates Notifications
+                // Logic for this below
+            }
         }
 
-        mpesaNotification.setOnClickListener {
-            // When switch is clicked it would either turn on or off
-            // If on mpesa notifications shall be received if off notifications won't be received
+        mpesaNotification.setOnCheckedChangedListener { _, isChecked ->
+            // Handles M-PESA notification...this is something we shall write the logic code for it
+            // once we have integrated the Daraja API into Chunga App
+            if(isChecked) {
+                // Mpesa Notification is enabled
+                // The code Logic for this to be done once the API is integrated
+            } else {
+                // Mpesa Notification is disabled
+                // The code logic for this to be written once the API is integrated
+            }
         }
     }
 }
