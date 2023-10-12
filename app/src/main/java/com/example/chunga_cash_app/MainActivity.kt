@@ -29,7 +29,7 @@ import com.google.firebase.database.ktx.values
 import com.google.firebase.ktx.Firebase
 import java.lang.Exception
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var studentDbRef: DatabaseReference
     private lateinit var binding: ActivityMainBinding
@@ -49,9 +49,9 @@ class MainActivity : AppCompatActivity() {
 //        }
 
             // Hooks
-            navigationView = binding.navViews
-            toolbar = binding.toolbar
-            drawerLayout = binding.drawerLayout
+            navigationView = findViewById(R.id.nav_views)
+            toolbar = findViewById(R.id.toolbar)
+            drawerLayout = findViewById(R.id.drawerLayout)
             circularProfileImage = binding.circularProfileImage
 
             // Tool Bar
@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity() {
             )
             drawerLayout.addDrawerListener(toggle)
             toggle.syncState()
+            navigationView.setNavigationItemSelectedListener(this);
 
         toolbar.navigationIcon = circularProfileImage.drawable
         toolbar.setNavigationOnClickListener{
@@ -178,6 +179,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return true
+    }
+
+    override fun onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+
+        else {
+            super.onBackPressed()
+        }
     }
 
 
