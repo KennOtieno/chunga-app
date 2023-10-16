@@ -1,8 +1,8 @@
 import android.os.Bundle
-import com.google.firebase.database.FirebaseDatabase
 import android.widget.Toast
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.FirebaseDatabase
 
 class AddActivity : AppCompatActivity() {
     private lateinit var studentNameEditText: EditText
@@ -10,18 +10,18 @@ class AddActivity : AppCompatActivity() {
     private lateinit var classAndStreamEditText: EditText
     private lateinit var pinCodeEditText: EditText
     private lateinit var accountBalanceEditText: EditText
-    private lateinit var mpesaNumberEditText: EditText
     private lateinit var facePhotoEditText: EditText
+    private lateinit var mpesaNumberEditText: EditText
 
-    override fun onCreate(savedInstanceState : Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.Layout.activity_add) // xml layout
+        setContentView(R.layout.activity_add)
 
-        // Initialize Edit Texts
+        // Initialize EditText fields
         studentNameEditText = findViewById(R.id.studentNameEditText)
         admissionNumberEditText = findViewById(R.id.admissionNumberEditText)
         classAndStreamEditText = findViewById(R.id.classAndStreamEditText)
-        pinCodeEditText = findViewById(R.id.pinCodeEdiitText)
+        pinCodeEditText = findViewById(R.id.pinCodeEditText)
         accountBalanceEditText = findViewById(R.id.accountBalanceEditText)
         facePhotoEditText = findViewById(R.id.facePhotoEditText)
         mpesaNumberEditText = findViewById(R.id.mpesaNumberEditText)
@@ -30,26 +30,26 @@ class AddActivity : AppCompatActivity() {
         val cancelButton: Button = findViewById(R.id.cancelButton)
 
         saveButton.setOnClickListener {
-            // Get user inputs from Initialization
-            val studentNameEditText = studentNameEditText.text.toString()
-            val admissionNumberEditText = admissionNumberEditText.text.toString()
-            val classAndStreamEditText = classAndStreamEditText.text.toString()
-            val pinCodeEditText = pinCodeEditText.text.toString()
-            val accountBalanceEditText = accountBalanceEditText.text.toString()
-            val facePhotoEditText = facePhotoEditText.text.toString()
+            // Get user inputs from EditText fields
+            val studentName = studentNameEditText.text.toString()
+            val admissionNumber = admissionNumberEditText.text.toString()
+            val classAndStream = classAndStreamEditText.text.toString()
+            val pinCode = pinCodeEditText.text.toString()
+            val accountBalance = accountBalanceEditText.text.toString()
+            val facePhoto = facePhotoEditText.text.toString()
+            val mpesaNumber = mpesaNumberEditText.text.toString()
 
-            // Check if everything is filled
-            if (studentName.isEmpty() || admissionNumber.isEmpty() || classAndStream.isEmpty() || pinCode.isEmpty() || accountBalance.isEmpty() || facePhoto.isEmpty()) {
+            // Check if required fields are filled
+            if (studentName.isEmpty() || admissionNumber.isEmpty() || classAndStream.isEmpty() || pinCode.isEmpty() || accountBalance.isEmpty() || facePhoto.isEmpty() || mpesaNumber.isEmpty()) {
                 // Show Toast
-                Toast.makeText(this, "! All fields are required",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
             } else {
-                // If all required fields are filled we proceed to save the data to the database
-                // Implementint it to the databse
-                val database = FireBase.getInstance()
+                // Initialize Firebase Database
+                val database = FirebaseDatabase.getInstance()
                 val databaseReference = database.reference.child("students")
 
                 // Create Student object with user input data
-                val studentId = dataReference.push().key
+                val studentId = databaseReference.push().key
                 val student = Student(studentId, studentName, admissionNumber, classAndStream, accountBalance, pinCode, facePhoto, mpesaNumber)
 
                 // Save student object to the database
@@ -57,24 +57,21 @@ class AddActivity : AppCompatActivity() {
                     databaseReference.child(studentId).setValue(student)
                         .addOnSuccessListener {
                             // Data successfully saved
-                            Toast.makeText(this, "Saved successfully",Toast.LENGTH_SHORT.show())
+                            Toast.makeText(this, "Saved successfully", Toast.LENGTH_SHORT).show()
                         }
                         .addOnFailureListener {
-                            // Error occured while saving data
-                            Toast.makeText(this, "! Oops Failed to save.Try Again",Toast.LENGTH_SHORT.show())
+                            // Error occurred while saving data
+                            Toast.makeText(this, "Failed to save. Try Again", Toast.LENGTH_SHORT).show()
                         }
                 }
-                // Navigate to MainActivity
+                // Navigate back to MainActivity
                 finish()
-
-                cancelButton.setOnClickListener {
-                    // Navigate back to MainActivity without saving data
-                    finish()
-                }
             }
+        }
 
-
-
+        cancelButton.setOnClickListener {
+            // Navigate back to MainActivity without saving data
+            finish()
         }
     }
 }
