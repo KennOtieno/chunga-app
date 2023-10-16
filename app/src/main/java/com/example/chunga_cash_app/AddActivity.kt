@@ -33,6 +33,22 @@ class AddActivity : AppCompatActivity() {
 
         saveButton.setOnClickListener {
             // Get user inputs from Initialization
+            val studentNameEditText = studentNameEditText.text.toString()
+            val admissionNumberEditText = admissionNumberEditText.text.toString()
+            val classAndStreamEditText = classAndStreamEditText.text.toString()
+            val pinCodeEditText = pinCodeEditText.text.toString()
+            val accountBalanceEditText = accountBalanceEditText.text.toString()
+            val facePhotoEditText = facePhotoEditText.text.toString()
+
+            // Check if everything is filled
+            if (studentName.isEmpty() || admissionNumber.isEmpty() || classAndStream.isEmpty() || pinCode.isEmpty() || accountBalance.isEmpty() || facePhoto.isEmpty()) {
+                // Show Toast
+                Toast.makeText(this, "! All fields are required",Toast.LENGTH_SHORT).show()
+            } else {
+                // If all required fields are filled we proceed to save the data to the database
+            }
+
+
 
         }
     }
