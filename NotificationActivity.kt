@@ -7,22 +7,22 @@ import androidx.preference.PreferenceManager
 class NotificationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
-        setContenetView(R.Layout.activity_notification) // xml layout file
+        setContentView(R.Layout.activity_notification) // xml layout file
 
         val preferencesButton = findViewById<Button>(R.id.preferencesButton)
         val soundNotificaticationButton = findViewById<Button>(R.id.soundNotificationButton)
 
         preferencesButton.setOnClickListener {
             // Opens preferences activity when clicked
-            val Intent (this@NotificationActivity, PreferenceActivity::class.java)
-            startActivity(Intent)
+            val intent (this@NotificationActivity, PreferenceActivity::class.java)
+            startActivity(intent)
             // User can select whether he wants to receive updates or Money Notifications(Daraja API)
         }
 
         soundNotificaticationButton.setONClickListener {
             // Opens sound activity when clicked
-            val Intent (this@NotificationActivity, SoundActivity::class.java)
-            startActivity(Intent)
+            val intent (this@NotificationActivity, SoundActivity::class.java)
+            startActivity(intent)
             // User can seect his own message ringtone and whether she wants vibration mode
         }
     }
