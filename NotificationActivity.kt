@@ -14,11 +14,15 @@ class NotificationActivity : AppCompatActivity() {
 
         preferencesButton.setOnClickListener {
             // Opens preferences activity when clicked
+            val Intent (this@NotificationActivity, PreferenceActivity::class.java)
+            startActivity(Intent)
             // User can select whether he wants to receive updates or Money Notifications(Daraja API)
         }
 
         soundNotificaticationButton.setONClickListener {
             // Opens sound activity when clicked
+            val Intent (this@NotificationActivity, SoundActivity::class.java)
+            startActivity(Intent)
             // User can seect his own message ringtone and whether she wants vibration mode
         }
     }
