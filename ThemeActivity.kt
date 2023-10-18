@@ -1,5 +1,5 @@
 import android.os.Bundle
-import androidx.appcomapatactivity.app.AppCompatActivity
+import androidx.appcomapat.app.AppCompatActivity
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import androidx.appcompat.widget.SwitchCompat
