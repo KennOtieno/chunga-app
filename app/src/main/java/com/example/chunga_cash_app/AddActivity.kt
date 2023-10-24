@@ -1,6 +1,9 @@
+package com.example.chunga_cash_app
+
 import android.os.Bundle
 import android.widget.Toast
 import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
 
@@ -15,7 +18,7 @@ class AddActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add)
+        setContentView(R.layout.activity_add) // ask Ken about view binding change
 
         // Initialize EditText fields
         studentNameEditText = findViewById(R.id.studentNameEditText)
