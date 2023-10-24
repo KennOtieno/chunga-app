@@ -1,6 +1,9 @@
+package com.example.chunga_cash_app
+
 import android.os.Bundle
 import android.widget.Toast
 import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
 
@@ -15,7 +18,7 @@ class AddActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add)
+        setContentView(R.layout.activity_add) // ask Ken about view binding change
 
         // Initialize EditText fields
         studentNameEditText = findViewById(R.id.studentNameEditText)
@@ -33,14 +36,19 @@ class AddActivity : AppCompatActivity() {
             // Get user inputs from EditText fields
             val studentName = studentNameEditText.text.toString()
             val admissionNumber = admissionNumberEditText.text.toString()
+            val admissionNumberInt = Integer.parseInt(admissionNumber)
             val classAndStream = classAndStreamEditText.text.toString()
             val pinCode = pinCodeEditText.text.toString()
+            val pinCodeInt = Integer.parseInt(pinCode)
             val accountBalance = accountBalanceEditText.text.toString()
+            val accountBalanceInt = Integer.parseInt(accountBalance)
             val facePhoto = facePhotoEditText.text.toString()
-            val mpesaNumber = mpesaNumberEditText.text.toString()
+            val mpesa = mpesaNumberEditText.text.toString()
+            val mpesaNumber = Integer.parseInt(mpesa)
+
 
             // Check if required fields are filled
-            if (studentName.isEmpty() || admissionNumber.isEmpty() || classAndStream.isEmpty() || pinCode.isEmpty() || accountBalance.isEmpty() || facePhoto.isEmpty() || mpesaNumber.isEmpty()) {
+            if (studentName.isEmpty() || admissionNumber.isEmpty() || classAndStream.isEmpty() || pinCode.isEmpty() || accountBalance.isEmpty() || facePhoto.isEmpty() || mpesa.isEmpty()) {
                 // Show Toast
                 Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
             } else {
@@ -50,7 +58,7 @@ class AddActivity : AppCompatActivity() {
 
                 // Create Student object with user input data
                 val studentId = databaseReference.push().key
-                val student = Student(studentId, studentName, admissionNumber, classAndStream, accountBalance, pinCode, facePhoto, mpesaNumber)
+                val student = Students(studentName, admissionNumberInt, classAndStream, pinCodeInt, accountBalanceInt, facePhoto, mpesaNumber)
 
                 // Save student object to the database
                 if (studentId != null) {
