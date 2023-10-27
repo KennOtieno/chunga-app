@@ -13,8 +13,8 @@ class AccountedMessagesActivity : AppCompatActivity() {
 
         messagesTextView = findViewById(R.id.messagesTextView) // Assuming we have a TextView in XML layout
 
-        // Retrieve MPESA confirmation messages from Firebase
-        val messagesRef = FirebaseDatabase.getInstance().getReference("accountedDetails")
+        // Retrieve MPESA confirmation messages from Firebase via mpesa node
+        val messagesRef = FirebaseDatabase.getInstance().getReference("mpesa")
         messagesRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val messagesList = mutableListOf<String>()
