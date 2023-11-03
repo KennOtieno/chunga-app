@@ -19,5 +19,10 @@ class StartupActivity : Activity() {
             val intent = Intent(this@StartupActivity, SignUpActivity::class.java)
             startActivity(intent)
         }
+
+        binding.logInBtn.setOnClickListener{
+            val intent = Intent(this@StartupActivity, UserConfirmationActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
