@@ -1,6 +1,6 @@
 import android.os.Bundle
-import android.appcompat.app.AppCompatActivity
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
 
 class EnrollmentSavingsActivity : AppCompatActivity() {
@@ -10,12 +10,11 @@ class EnrollmentSavingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_enrollment_savings) // XML LAYOUT
+        setContentView(R.layout.activity_enrollment_savings)
 
-        studentsEnrolledTextView = findViewById(R.id.studentsEnrolledTextView) // Assuming you have a TextView in XML layout with this ID
-        totalBalanceTextView = findViewById(R.id.totalBalanceTextView) // Assuming you have a TextView in XML layout with this ID
+        studentsEnrolledTextView = findViewById(R.id.studentsEnrolledTextView)
+        totalBalanceTextView = findViewById(R.id.totalBalanceTextView)
 
-        // Retrieve total students enrolled and total account balance from Firebase
         val studentsRef = FirebaseDatabase.getInstance().getReference("students")
         studentsRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -23,15 +22,14 @@ class EnrollmentSavingsActivity : AppCompatActivity() {
                 var totalBalance = 0
 
                 for (studentSnapshot in snapshot.children) {
-                    val student = studentSnapshot.getValue(Students::class.java)
+                    val student = studentSnapshot.getValue(Student::class.java)
                     if (student != null) {
                         totalStudents++
                         totalBalance += student.accountBalance ?: 0
                     }
                 }
 
-                // Display total students and total balance
-                totalStudentsTextView.text = "Students Enrolled: $totalStudents"
+                studentsEnrolledTextView.text = "Students Enrolled: $totalStudents"
                 totalBalanceTextView.text = "Total Account Balance: $totalBalance Ksh"
             }
 
