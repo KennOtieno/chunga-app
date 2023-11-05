@@ -20,6 +20,8 @@
         android:textSize="30dp"
         android:textDirection="inherit"
         android:textAlignment="center"
+        android:textStyle="bold"
+        android:paddingTop="30dp"
         />
 
     <LinearLayout
@@ -37,10 +39,10 @@
         />
 
         <Button
-            android:id="@+id/signInBtn"
+            android:id="@+id/logInBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign In"
+            android:text="Log In"
         />
     </LinearLayout>
 </LinearLayout>
