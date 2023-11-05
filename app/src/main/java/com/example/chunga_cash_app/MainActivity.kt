@@ -86,6 +86,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     // It opens the search activity when clicked
                     val intent = Intent(this, SearchActivity::class.java)
                     startActivity(intent)
+                    showToast("Search Clicked")
                     true
                 }
                 R.id.menu_register_student -> {
