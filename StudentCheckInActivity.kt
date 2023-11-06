@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import android.widget.ImageView
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 
 class StudentCheckInActivity : AppCompatActivity() {
 
@@ -31,7 +32,7 @@ class StudentCheckInActivity : AppCompatActivity() {
                     // Display Student Information
                     val photoImageView: ImageView = findViewById(R.id.photoImageView)
                     // Load image into photoImageView using Picasso or Glide
-                    // Example: Picasso.get().load(student.photo).into(photoImageView)
+                    Picasso.get().load(student.photo).into(photoImageView)
 
                     val nameTextView = findViewById<TextView>(R.id.nameTextView)
                     val adminNumTextView = findViewById<TextView>(R.id.adminNumTextView)
