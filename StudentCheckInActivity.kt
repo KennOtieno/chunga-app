@@ -1,5 +1,6 @@
 package com.example.chunga_cash_app
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -7,34 +8,38 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 import android.widget.Toast
 import android.widget.ImageView
-import com.google.firebaase.database.*
+import com.google.firebase.database.*
 
-class StudentCheckInActivity : AppCompatActivity () {
+class StudentCheckInActivity : AppCompatActivity() {
+
+    private lateinit var databaseReference: DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_student_check_in) // XML LAYOUT
+        setContentView(R.layout.activity_student_check_in)
 
-        // Intialize firebase database reference
+        // Initialize Firebase database reference
         databaseReference = FirebaseDatabase.getInstance().reference.child("students")
 
         // Fetch student data from database
-        databaseReference.child("student_key").addListenerForSingleValueEvent(object : ValueEventListener {
+        val studentKey = "your_student_key" // Replace with the actual student key
+        databaseReference.child(studentKey).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    val student = dataSnapshot.getValue(Student::class.java)
+                val student = dataSnapshot.getValue(Student::class.java)
 
+                if (student != null) {
                     // Display Student Information
                     val photoImageView: ImageView = findViewById(R.id.photoImageView)
-                    // Load image into photoImageView using student.photo
-                    // I need to do research on picasso or Glide this part is unfinished business.
+                    // Load image into photoImageView using Picasso or Glide
+                    // Example: Picasso.get().load(student.photo).into(photoImageView)
 
                     val nameTextView = findViewById<TextView>(R.id.nameTextView)
                     val adminNumTextView = findViewById<TextView>(R.id.adminNumTextView)
                     val classStreamTextView = findViewById<TextView>(R.id.classStreamTextView)
 
-                    nameTextView.text = student?.name
-                    adminNumTextView.text = student?.adminNum.toString()
-                    classStreamTextView.text = student?.classStream
+                    nameTextView.text = student.name
+                    adminNumTextView.text = student.adminNum.toString()
+                    classStreamTextView.text = student.classStream
 
                     // Pin Input field and OK button
                     val pinEditText = findViewById<EditText>(R.id.pinEditText)
@@ -42,14 +47,15 @@ class StudentCheckInActivity : AppCompatActivity () {
 
                     okButton.setOnClickListener {
                         val enteredPin = pinEditText.text.toString()
-                        val correctPin = student?.pinCode.toString()
+                        val correctPin = student.pinCode.toString()
 
                         if (enteredPin == correctPin) {
-                            // If it's the correct pin, navigate to Student Account Activity
+                            // If it's the correct pin, navigate to StudentAccountActivity
                             val intent = Intent(this@StudentCheckInActivity, StudentAccountActivity::class.java)
                             startActivity(intent)
-
                             Toast.makeText(this@StudentCheckInActivity, "Done", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this@StudentCheckInActivity, "Incorrect Pin", Toast.LENGTH_SHORT).show()
                         }
                     }
 
@@ -59,8 +65,7 @@ class StudentCheckInActivity : AppCompatActivity () {
                         // When clicked goes to Forgot Pin Activity
                         val intent = Intent(this@StudentCheckInActivity, ForgotPinActivity::class.java)
                         startActivity(intent)
-
-                        Toast.makeText(this@StudentCheckInActivity, "Openning", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@StudentCheckInActivity, "Opening", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     // Handle the case where student data doesn't exist in the database
