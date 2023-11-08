@@ -26,7 +26,48 @@ class StudentAccountActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 student = dataSnapshot.getValue(Studemt::class.java) ?: Student()
 
-                // Display Student Data
+                // Display Student Information
+                val photoImageView: ImageView = findViewById(R.id.photoImageView)
+                // Loading Image with picasso
+                Picasso.get().load(student.photo).into(photoImageView)
+
+                val nameTextView = findViewById<TextView>(R.id.nameTextView)
+                val classStreamTextView = findViewById<TextView>(R.id.classStreamTextView)
+                val adminNumTextView = findViewById<TextView>(R.id.adminNumTextView)
+                val accountBalanceTextView = findViewById<TextView>(R.id.accountBalanceTextView)
+
+                nameTextView.text = student.name
+                classStreamTextView.text = student.classStream
+                adminNumTextView.text = student.adminNum.toString()
+                accountBalanceTextView.text = student.accountBalance.toString()
+
+                // BACK Button
+                val backButton: Button = findViewById(R.id.backButton)
+                backButton.setOnClickListener {
+                    onBackPressed()
+                }
+
+                // ADD Button
+                val addButton: Button = findViewById(R.id.addButton)
+                addButton.setOnClickListener {
+                    showInputDialog(true)
+                }
+
+                // DEDUCT Button
+                val deductButton: Button = findViewById(R.id.deductButton)
+                deductButton.setOnClickListener {
+                    showInputDialog(false)
+                }
+
+                // Drop-down menu Button
+                val menuButton = Button = findViewById(R.id.menuButton)
+                menuButton.setOnClickListener {
+                    showPopupMenu(menuButton)
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle Errors
             }
         }
     }
