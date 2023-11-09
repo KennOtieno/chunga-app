@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import com.google.firebase.database.*
+import java.awt.PopupMenu
 
 class StudentAccountActivity : AppCompatActivity() {
 
@@ -68,6 +69,46 @@ class StudentAccountActivity : AppCompatActivity() {
 
             override fun onCancelled(databaseError: DatabaseError) {
                 // Handle Errors
+                Toast.makeText(this@StudentAccountActivity, "Failed to Retrieve", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun showInputDialog(isAddOperation: Boolean) {
+        val inputEditText = EditText(this@StudentAccountActivity)
+        val dialogTitle = if (isAddOperation) "Add Amount" else "Deduct Amount"
+
+        val dialog = AlertDialog.Builder(this@StudentAccountActivity)
+            .setTitle(dialogTitle)
+            .setView(inputEditText)
+            .setPositiveButton("OK") { dialog, _ ->
+                val inputAmount = inputEditText.text.toString().toIntorNull() ?: 0
+                if(isAddOperation) {
+                    student.accountBalance += inputAmount
+                } else {
+                    student.accountBalance = maxOf(0, student.accountBalance - inputAmount)
+                }
+                // Update the account balance in the Firebase DB
+                databaseReference.child(studentKey).setValue(student)
+                dialog.dismiss()
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+
+        dialog.show()
+    }
+
+    private fun showPopupMenu(view: View) {
+        val popupMenu = PopupMenu(this@StudentAccountActivity, view)
+        popupMenu.menuInflater.inflate(R.menu.menu_student_account, popupMenu.menu)
+
+        popupMenu.setOnMenuItemClickListener { item ->
+            when(item.itemId) {
+                R.id.menu_my_transactions -> {
+                    // Start My Transaaction Activity when Clicked.
+                }
             }
         }
     }
