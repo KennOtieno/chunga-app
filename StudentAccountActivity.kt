@@ -108,8 +108,23 @@ class StudentAccountActivity : AppCompatActivity() {
             when(item.itemId) {
                 R.id.menu_my_transactions -> {
                     // Start My Transaaction Activity when Clicked.
+                    startActivity(Intent(this@StudentAccountActivity, MyTransactionActivity::class.java))
+                    true
                 }
+                R.id.menu_my_account -> {
+                    // Start My Account Activity when clicked
+                    startActivity(Intent(this@StudentAccountActivity, MyAccountActivity::class.java))
+                    true
+                }
+                R.id.menu_my_pin -> {
+                    // Start My Pin Activity when clicked
+                    startActivity(Intent(this@StudentAccountActivity, MyPinActivity::class.java))
+                    true
+                }
+                else -> false
             }
         }
+
+        popupMenu.show()
     }
 }
