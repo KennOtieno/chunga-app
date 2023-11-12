@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/adminTextTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Administration Account"
+        android:textAlignment="center"
+        android:textSize="24dp"
+        android:layout_marginTop="30dp"
+        android:drawableStart="@drawable/person_icon"
+        android:padding="50dp"
+        android:textStyle="bold"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="100dp"
+        android:paddingRight="100dp">
+
+        <Button
+            android:id="@+id/transactionDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Transaction Details"/>
+
+        <Button
+            android:id="@+id/enrollmentSavings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enrollment &amp; Savings"/>
+
+        <Button
+            android:id="@+id/changeDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Change Details"/>
+
+    </LinearLayout>
+
+</LinearLayout>
