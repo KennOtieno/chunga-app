@@ -1,11 +1,14 @@
+package com.example.chunga_cash_app
+
 import android.os.Bundle
-import android.appcompat.app.AppCompatActivity
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 import com.google.firebase.database.*
 
 class MyPinActivity : AppCompatActivity() {
 
-    private lateinit var databaseReference:  DatabaseReference
+    private lateinit var databaseReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,9 +19,9 @@ class MyPinActivity : AppCompatActivity() {
 
         // Fetch students data from the database
         val studentKey = "your_student_key" // Replace this with the DB Actual Key otherwise ERROR will be here
-        databaseReference.child(studentKey).addListenerForSingleValueEvent(Object : ValueEventListener {
+        databaseReference.child(studentKey).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val student = dataSnapshot.getValue(student::class.java)
+                val student = dataSnapshot.getValue(Student::class.java)
 
                 if (student != null) {
                     // Display Student's Pin in Text View
@@ -28,11 +31,11 @@ class MyPinActivity : AppCompatActivity() {
                     // Show Toast when the data doesn't exist
                     Toast.makeText(this@MyPinActivity, "Does not Exist", Toast.LENGTH_SHORT).show()
                 }
+            }
 
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // Show Toast saying Cancelled or Error
-                    Toast.makeText(this@MyPinActivity, "Error", Toast.LENGTH_SHORT).show()
-                }
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Show Toast saying Cancelled or Error
+                Toast.makeText(this@MyPinActivity, "Error", Toast.LENGTH_SHORT).show()
             }
         })
     }
