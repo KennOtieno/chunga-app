@@ -20,7 +20,7 @@ class MyAccountActivity : AppCompatActivity() {
         databaseReference = FirebaseDatabase.getInstance().reference.child("students")
 
         // Fetch students data from the database
-        val studentKey = "your_student_key" // Replace this with the actual student key
+        val studentKey = "your_student_key" // Replace this with the actual student key, THIS IS IMPORTANT DARREN
         databaseReference.child(studentKey).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val student = dataSnapshot.getValue(Student::class.java)
@@ -59,7 +59,7 @@ class MyAccountActivity : AppCompatActivity() {
         alertDialogBuilder.setTitle("Change Details")
         alertDialogBuilder.setMessage("Are you sure you want to change your details?")
         alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
-            // Update details in the database (you need to implement this part based on your requirements)
+            // Update details in the database
             updateDetailsInDatabase(studentKey)
         }
         alertDialogBuilder.setNegativeButton("No") { _, _ ->
@@ -69,10 +69,31 @@ class MyAccountActivity : AppCompatActivity() {
     }
 
     private fun updateDetailsInDatabase(studentKey: String) {
-        // You need to implement the logic to update details in the database based on user input
-        // For example, get the updated values from the EditText fields and update the corresponding fields in the database
+        // Get the updated values from the EditText fields
+        val updatedPhoto = findViewById<EditText>(R.id.photoEditText).text.toString()
+        val updatedName = findViewById<EditText>(R.id.nameEditText).text.toString()
+        val updatedAdminNum = findViewById<EditText>(R.id.adminNumEditText).text.toString()
+        val updatedClassStream = findViewById<EditText>(R.id.classStreamEditText).text.toString()
+        val updatedMpesa = findViewById<EditText>(R.id.mpesaEditText).text.toString()
 
-        // After updating the details, show a toast indicating that the details have been changed
-        Toast.makeText(this@MyAccountActivity, "Changed", Toast.LENGTH_SHORT).show()
+        // I had to create a HashMap to represent the updated data (*I have to confirm if this is correct I think it is.*)
+        val updatedData = hashMapOf<String, Any?>(
+            "photo" to updatedPhoto,
+            "name" to updatedName,
+            "adminNum" to updatedAdminNum.toInt(), // This is an Int
+            "classStream" to updatedClassStream,
+            "mpesa" to updatedMpesa.toInt() // It is also an integer
+        )
+
+        // Update the corresponding fields in the database
+        databaseReference.child(studentKey).updateChildren(updatedData)
+            .addOnSuccessListener {
+                // On success, show a toast indicating that the details have been changed
+                Toast.makeText(this@MyAccountActivity, "Changed", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                // On failure, show a toast indicating an error
+                Toast.makeText(this@MyAccountActivity, "Failed to update details, Try Again.", Toast.LENGTH_SHORT).show()
+            }
     }
 }
