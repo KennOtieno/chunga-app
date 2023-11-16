@@ -20,7 +20,7 @@ class MyAccountActivity : AppCompatActivity() {
         databaseReference = FirebaseDatabase.getInstance().reference.child("students")
 
         // Fetch students data from the database
-        val studentKey = "adminNumText" // Replace this with the actual student key, THIS IS IMPORTANT DARREN
+        val studentKey = "adminNumText" // Student Key as in the DB
         databaseReference.child(studentKey).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val student = dataSnapshot.getValue(Student::class.java)
