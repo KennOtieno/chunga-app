@@ -21,7 +21,7 @@ class MyAccountActivity : AppCompatActivity() {
 
         // Fetch students data from the database
         val studentKey = "adminNumText" // Replace this with the actual student key, THIS IS IMPORTANT DARREN
-        databaseReference.child(adminNumText).addListenerForSingleValueEvent(object : ValueEventListener {
+        databaseReference.child(studentKey).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val student = dataSnapshot.getValue(Student::class.java)
 
@@ -54,13 +54,13 @@ class MyAccountActivity : AppCompatActivity() {
         })
     }
 
-    private fun showChangeConfirmationDialog(adminNumText: String) {
+    private fun showChangeConfirmationDialog(studentKey: String) {
         val alertDialogBuilder = AlertDialog.Builder(this)
         alertDialogBuilder.setTitle("Change Details")
         alertDialogBuilder.setMessage("Are you sure you want to change your details?")
         alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
             // Update details in the database
-            updateDetailsInDatabase(adminNumText)
+            updateDetailsInDatabase(studentKey)
         }
         alertDialogBuilder.setNegativeButton("No") { _, _ ->
             // Do nothing, user canceled the change
@@ -68,7 +68,7 @@ class MyAccountActivity : AppCompatActivity() {
         alertDialogBuilder.show()
     }
 
-    private fun updateDetailsInDatabase(adminNumText: String) {
+    private fun updateDetailsInDatabase(studentKey: String) {
         // Get the updated values from the EditText fields
         val updatedPhoto = findViewById<EditText>(R.id.photoEditText).text.toString()
         val updatedName = findViewById<EditText>(R.id.nameEditText).text.toString()
@@ -76,7 +76,7 @@ class MyAccountActivity : AppCompatActivity() {
         val updatedClassStream = findViewById<EditText>(R.id.classStreamEditText).text.toString()
         val updatedMpesa = findViewById<EditText>(R.id.mpesaEditText).text.toString()
 
-        // I had to create a HashMap to represent the updated data (*I have to confirm if this is correct I think it is.*)
+        // I had to create a HashMap to represent the updated data
         val updatedData = hashMapOf<String, Any?>(
             "photo" to updatedPhoto,
             "name" to updatedName,
@@ -86,7 +86,7 @@ class MyAccountActivity : AppCompatActivity() {
         )
 
         // Update the corresponding fields in the database
-        databaseReference.child(adminNumText).updateChildren(updatedData)
+        databaseReference.child(studentKey).updateChildren(updatedData)
             .addOnSuccessListener {
                 // On success, show a toast indicating that the details have been changed/Saved
                 Toast.makeText(this@MyAccountActivity, "Saved", Toast.LENGTH_SHORT).show()
