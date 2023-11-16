@@ -11,7 +11,7 @@ class MyTransactionActivity : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var recyclerView: RecyclerView
     private lateinit var transactionAdapter: TransactionAdapter
-    private var studentKey: String = "the_student_key" // Replace with the actual key on the DB
+    private var studentKey: String = "adminNumText" // Replace with the actual key on the DB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
