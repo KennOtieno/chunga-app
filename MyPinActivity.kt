@@ -18,7 +18,7 @@ class MyPinActivity : AppCompatActivity() {
         databaseReference = FirebaseDatabase.getInstance().reference.child("students")
 
         // Fetch students data from the database
-        val studentKey = "your_student_key" // Replace this with the DB Actual Key otherwise ERROR will be here
+        val studentKey = "adminNumText" // Official StudentKey as uded in the DB
         databaseReference.child(studentKey).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val student = dataSnapshot.getValue(Student::class.java)
