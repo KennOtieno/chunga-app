@@ -20,8 +20,8 @@ class MyAccountActivity : AppCompatActivity() {
         databaseReference = FirebaseDatabase.getInstance().reference.child("students")
 
         // Fetch students data from the database
-        val studentKey = "your_student_key" // Replace this with the actual student key, THIS IS IMPORTANT DARREN
-        databaseReference.child(studentKey).addListenerForSingleValueEvent(object : ValueEventListener {
+        val studentKey = "adminNumText" // Replace this with the actual student key, THIS IS IMPORTANT DARREN
+        databaseReference.child(adminNumText).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val student = dataSnapshot.getValue(Student::class.java)
 
@@ -54,13 +54,13 @@ class MyAccountActivity : AppCompatActivity() {
         })
     }
 
-    private fun showChangeConfirmationDialog(studentKey: String) {
+    private fun showChangeConfirmationDialog(adminNumText: String) {
         val alertDialogBuilder = AlertDialog.Builder(this)
         alertDialogBuilder.setTitle("Change Details")
         alertDialogBuilder.setMessage("Are you sure you want to change your details?")
         alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
             // Update details in the database
-            updateDetailsInDatabase(studentKey)
+            updateDetailsInDatabase(adminNumText)
         }
         alertDialogBuilder.setNegativeButton("No") { _, _ ->
             // Do nothing, user canceled the change
@@ -68,7 +68,7 @@ class MyAccountActivity : AppCompatActivity() {
         alertDialogBuilder.show()
     }
 
-    private fun updateDetailsInDatabase(studentKey: String) {
+    private fun updateDetailsInDatabase(adminNumText: String) {
         // Get the updated values from the EditText fields
         val updatedPhoto = findViewById<EditText>(R.id.photoEditText).text.toString()
         val updatedName = findViewById<EditText>(R.id.nameEditText).text.toString()
@@ -86,10 +86,10 @@ class MyAccountActivity : AppCompatActivity() {
         )
 
         // Update the corresponding fields in the database
-        databaseReference.child(studentKey).updateChildren(updatedData)
+        databaseReference.child(adminNumText).updateChildren(updatedData)
             .addOnSuccessListener {
-                // On success, show a toast indicating that the details have been changed
-                Toast.makeText(this@MyAccountActivity, "Changed", Toast.LENGTH_SHORT).show()
+                // On success, show a toast indicating that the details have been changed/Saved
+                Toast.makeText(this@MyAccountActivity, "Saved", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener {
                 // On failure, show a toast indicating an error
