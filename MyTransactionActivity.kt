@@ -11,14 +11,14 @@ class MyTransactionActivity : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var recyclerView: RecyclerView
     private lateinit var transactionAdapter: TransactionAdapter
-    private var studentKey: String = "adminNumText" // Replace with the actual key on the DB
+    private var studentKey: String = "adminNumText" // This is the actual key on the DB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_transaction)
 
         // Initialize Firebase Database Reference
-        databaseReference = FirebaseDatabase.getInstance().reference.child("students")
+        databaseReference = FirebaseDatabase.getInstance().reference.child("transactions").child(studentKey)
 
         // Initialize RecyclerView
         recyclerView = findViewById(R.id.transactionRecyclerView)
@@ -26,22 +26,24 @@ class MyTransactionActivity : AppCompatActivity() {
         transactionAdapter = TransactionAdapter()
         recyclerView.adapter = transactionAdapter
 
-        // Fetch Student Data from database
-        databaseReference.child(studentKey).addListenerForSingleValueEvent(object : ValueEventListener {
+        // Fetch Transactions Data from database
+        databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val student = dataSnapshot.getValue(Student::class.java)
+                val transactions = mutableListOf<Transaction>()
 
-                if (student != null) {
-                    // Display Student's Transactions
-                    if (student.transactions != null) {
-                        transactionAdapter.setTransactions(student.transactions)
-                    }
+                for (transactionSnapshot in dataSnapshot.children) {
+                    val transaction = transactionSnapshot.getValue(Transaction::class.java)
+                    transaction?.let { transactions.add(it) }
                 }
+
+                // Update RecyclerView with transactions
+                transactionAdapter.setTransactions(transactions)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
                 // Handle Errors
-                // You might want to show a toast or handle the error appropriately
+                val errorMessage = "An Error Occured"
+                Toast.makeText(this@MyTransactionActivity, errorMessage, Toast.LENGTH_SHORT).show()
             }
         })
     }
