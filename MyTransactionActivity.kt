@@ -18,7 +18,7 @@ class MyTransactionActivity : AppCompatActivity() {
         setContentView(R.layout.activity_my_transaction)
 
         // Initialize Firebase Database Reference
-        databaseReference = FirebaseDatabase.getInstance().reference.child("transactions").child(studentKey)
+        databaseReference = FirebaseDatabase.getInstance().reference.child("students").child(studentKey)
 
         // Initialize RecyclerView
         recyclerView = findViewById(R.id.transactionRecyclerView)
