@@ -26,7 +26,7 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(Intent(this, HelpGuideActivity::class.java))
         }
 
-        buttonNotification.setOnListener {
+        buttonNotification.setOnClickListener {
             // Opens up NotificationPreferenceActivity when clicked by the user
             startActivity(intent(this, NotificationActivity::class.java))
         }
