@@ -28,7 +28,7 @@ class SettingsActivity : AppCompatActivity() {
 
         buttonNotification.setOnClickListener {
             // Opens up NotificationPreferenceActivity when clicked by the user
-            startActivity(intent(this, NotificationActivity::class.java))
+            startActivity(Intent(this, NotificationActivity::class.java))
         }
 
         buttonThemeCustomization.setOnClickListener {
