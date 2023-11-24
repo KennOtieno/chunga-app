@@ -31,7 +31,7 @@ class StudentCheckInActivity : AppCompatActivity() {
                 if (student != null) {
                     // Display Student Information
                     val photoImageView: ImageView = findViewById(R.id.photoImageView)
-                    // Load image into photoImageView using Picasso or Glide
+                    // Loading image into photoImageView using Picasso
                     Picasso.get().load(student.photo).into(photoImageView)
 
                     val nameTextView = findViewById<TextView>(R.id.nameTextView)
@@ -54,7 +54,7 @@ class StudentCheckInActivity : AppCompatActivity() {
                             // If it's the correct pin, navigate to StudentAccountActivity
                             val intent = Intent(this@StudentCheckInActivity, StudentAccountActivity::class.java)
                             startActivity(intent)
-                            Toast.makeText(this@StudentCheckInActivity, "Done", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@StudentCheckInActivity, "Successful", Toast.LENGTH_SHORT).show()
                         } else {
                             Toast.makeText(this@StudentCheckInActivity, "Incorrect Pin", Toast.LENGTH_SHORT).show()
                         }
