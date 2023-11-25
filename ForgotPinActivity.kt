@@ -37,14 +37,18 @@ class ForgotPinActivity : AppCompatActivity() {
                         startActivity(intent)
 
                         // We show a Toast telling user to check their pin so that they won't forget it again
-                        Toast.makeText(
-                            this@ForgotPinActivity,
-                            "Check or Change your Pin"
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else
+                        Toast.makeText(this@ForgotPinActivity, "Check or Change your Pin" Toast.LENGTH_SHORT).show()
+                    } else {
+                        // We show a Toast to the user saying that the Inputted Admin Password is Incorrect
+                        Toast.makeText(this@ForgotPinActivity, "Incorrect Admin Password! Try Again." Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Handle DB Error
+                    Toast.makeText(this@ForgotPinActivity, "OOPS! An Error Occured.Try Again." Toast.LENGTH_SHORT).show()
+                }
+            })
         }
     }
 }
