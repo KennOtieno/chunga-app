@@ -27,7 +27,7 @@ class ForgotPinActivity : AppCompatActivity() {
             val enteredAdminPassword = adminPasswordEditText.text.toString()
 
             // Fetch Admin Password from the database
-            databaseReference.addLiistenerForSingleValueEvent(object : ValueEventListener {
+            databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val correctAdminPassword = dataSnapshot.getValue(String::class.java)
 
@@ -37,10 +37,10 @@ class ForgotPinActivity : AppCompatActivity() {
                         startActivity(intent)
 
                         // We show a Toast telling user to check their pin so that they won't forget it again
-                        Toast.makeText(this@ForgotPinActivity, "Check or Change your Pin" Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@ForgotPinActivity, "Check or Change your Pin", Toast.LENGTH_SHORT).show()
                     } else {
                         // We show a Toast to the user saying that the Inputted Admin Password is Incorrect
-                        Toast.makeText(this@ForgotPinActivity, "Incorrect Admin Password! Try Again." Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@ForgotPinActivity, "Incorrect Admin Password! Try Again.", Toast.LENGTH_SHORT).show()
                     }
                 }
 
