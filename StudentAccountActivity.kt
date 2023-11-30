@@ -56,7 +56,7 @@ class StudentAccountActivity : AppCompatActivity() {
 
                 // WITHDRAW Button
                 val withdrawButton: Button = findViewById(R.id.withdrawButton)
-                withdrawButtonButton.setOnClickListener {
+                withdrawButton.setOnClickListener {
                     showInputDialog(false)
                 }
 
@@ -82,15 +82,20 @@ class StudentAccountActivity : AppCompatActivity() {
             .setTitle(dialogTitle)
             .setView(inputEditText)
             .setPositiveButton("OK") { dialog, _ ->
-                val inputAmount = inputEditText.text.toString().toIntorNull() ?: 0
-                if(isAddOperation) {
+                val inputAmount = inputEditText.text.toString().toIntOrNull() ?: 0
+                if (isAddOperation) {
                     student.accountBalance += inputAmount
                 } else {
-                    student.accountBalance = maxOf(0, student.accountBalance - inputAmount)
+                    if (inputAmount > student.accountBalance) {
+                        // Display a message to the user indicating insufficient funds
+                        Toast.makeText(this@StudentAccountActivity, "Insufficient funds. Withdrawal unsuccessful.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        student.accountBalance -= inputAmount
+                        // Update the account balance in the Firebase DB
+                        databaseReference.child(studentKey).setValue(student)
+                        dialog.dismiss()
+                    }
                 }
-                // Update the account balance in the Firebase DB
-                databaseReference.child(studentKey).setValue(student)
-                dialog.dismiss()
             }
             .setNegativeButton("Cancel") { dialog, _ ->
                 dialog.dismiss()
