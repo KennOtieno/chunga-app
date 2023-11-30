@@ -25,7 +25,7 @@ class StudentAccountActivity : AppCompatActivity() {
         val studentKey = "adminNumText" // This is the actual key in the DB.
         databaseReference.child(studentKey).addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                student = dataSnapshot.getValue(Studemt::class.java) ?: Student()
+                student = dataSnapshot.getValue(Student::class.java) ?: Student()
 
                 // Display Student Information
                 val photoImageView: ImageView = findViewById(R.id.photoImageView)
@@ -48,15 +48,15 @@ class StudentAccountActivity : AppCompatActivity() {
                     onBackPressed()
                 }
 
-                // ADD Button
-                val addButton: Button = findViewById(R.id.addButton)
-                addButton.setOnClickListener {
+                // DEPOSIT  Button
+                val depositButton: Button = findViewById(R.id.depositButton)
+                depositButton.setOnClickListener {
                     showInputDialog(true)
                 }
 
-                // DEDUCT Button
-                val deductButton: Button = findViewById(R.id.deductButton)
-                deductButton.setOnClickListener {
+                // WITHDRAW Button
+                val withdrawButton: Button = findViewById(R.id.withdrawButton)
+                withdrawButtonButton.setOnClickListener {
                     showInputDialog(false)
                 }
 
