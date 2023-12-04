@@ -1,3 +1,5 @@
+package com.example.chunga_cash_app
+
 import android.os.Bundle
 import android.widget.Switch
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +12,6 @@ class PreferencesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_preferences) // XML layout
 
         val updatesNotification = findViewById<Switch>(R.id.updatesNotification)
-        val mpesaNotification = findViewById<Switch>(R.id.mpesaNotification)
 
         updatesNotification.setOnCheckedChangeListener { _, isChecked ->
             // Handles Updates notifications
@@ -20,17 +21,6 @@ class PreferencesActivity : AppCompatActivity() {
             } else {
                 // Updates will be disabled, and the user won't receive Updates Notifications
                 disableUpdatesNotifications()
-            }
-        }
-
-        mpesaNotification.setOnCheckedChangeListener { _, isChecked ->
-            // Handles Mpesa notifications
-            if (isChecked) {
-                // Mpesa Notification is enabled
-                enableMpesaNotifications()
-            } else {
-                // Mpesa Notification is disabled
-                disableMpesaNotifications()
             }
         }
     }
@@ -76,13 +66,5 @@ class PreferencesActivity : AppCompatActivity() {
 
     private fun disableUpdatesNotifications() {
         // Logic to disable Updates Notifications if needed
-    }
-
-    private fun enableMpesaNotifications() {
-        // Logic to enable Mpesa Notifications if needed
-    }
-
-    private fun disableMpesaNotifications() {
-        // Logic to disable Mpesa Notifications if needed
     }
 }
