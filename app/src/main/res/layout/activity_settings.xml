@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/buttonAboutLegal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="About Legal"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/buttonAppVersionAndUpdates"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonAboutLegal"
+        android:text="App Version & Updates"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/buttonHelpGuide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonAppVersionAndUpdates"
+        android:text="Help Guide"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/buttonNotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonHelpGuide"
+        android:text="Notification"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/buttonThemeCustomization"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonNotification"
+        android:text="Theme Customization"
+        android:layout_marginTop="16dp"/>
+</RelativeLayout>
