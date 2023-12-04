@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RealativeLayout xmlns:android="https://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -44,7 +45,8 @@
         android:id="@+id/cancelButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/saveButton"
+        android:layout_below="@+id/institutionNameEditText"
+        android:layout_toRightOf="@+id/saveButton"
         android:text="Cancel" />
 
 </RealativeLayout>
