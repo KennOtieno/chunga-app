@@ -1,3 +1,5 @@
+package com.example.chunga_cash_app
+
 import android.os.Bundle
 import androidx.appcomapat.app.AppCompatActivity
 import android.content.SharedPreferences
