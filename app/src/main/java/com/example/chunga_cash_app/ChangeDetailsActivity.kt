@@ -1,3 +1,5 @@
+package com.example.chunga_cash_app
+
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.Button
@@ -7,6 +9,7 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import com.google.firebase.database.FirebaseDatabase
 import androidx.appcompat.app.AppCompatActivity
+import com.example.chunga_cash_app.databinding.ActivityChangeDetailsBinding
 
 class ChangeDetailsActivity : AppCompatActivity() {
 
@@ -14,11 +17,15 @@ class ChangeDetailsActivity : AppCompatActivity() {
     private lateinit var passwordEditText: EditText
     private lateinit var emailEditText: EditText
     private lateinit var institutionNameEditText: EditText
+//    private lateinit var binding: ActivityChangeDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        binding =  ActivityChangeDetailsBinding.inflate(layoutInflater)
+//        val view = binding.root
         setContentView(R.layout.activity_change_details) // XML LAYOUT HERE DON'T FORGET IT.
 
+        // used binding to capture the ID instead of findViewBy
         usernameEditText = findViewById(R.id.usernameEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
         emailEditText = findViewById(R.id.emailEditText)
