@@ -1,18 +1,24 @@
 package com.example.chunga_cash_app
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.content.SharedPreferences
-import androidx.preference.PreferenceManager
+import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
+import androidx.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatDelegate
 
 class ThemeActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_theme) // xml layout file
+        setContentView(R.layout.activity_theme)
 
         val themeSwitch = findViewById<SwitchCompat>(R.id.themeSwitch)
+        val darkButton = findViewById<Button>(R.id.darkButton)
+        val lightButton = findViewById<Button>(R.id.lightButton)
+
         // Fetch current theme preference and set the switch state (default: LightMode)
         val isDarkModeEnabled = getThemePreferenceFromSharedPreferences()
         themeSwitch.isChecked = isDarkModeEnabled
@@ -22,6 +28,9 @@ class ThemeActivity : AppCompatActivity() {
             updateThemePreferenceInSharedPreferences(isChecked)
             applyTheme(isChecked)
         }
+
+        darkButton.setOnClickListener { onDarkButtonClick() }
+        lightButton.setOnClickListener { onLightButtonClick() }
     }
 
     // Function to apply the selected Theme
@@ -59,5 +68,17 @@ class ThemeActivity : AppCompatActivity() {
         // "theme_preference" is the key to store the theme preference
         editor.putBoolean("theme_preference", isDarkModeEnabled)
         editor.apply()
+    }
+
+    // Method to handle Dark button click
+    private fun onDarkButtonClick() {
+        updateThemePreferenceInSharedPreferences(true)
+        applyTheme(true)
+    }
+
+    // Method to handle Light button click
+    private fun onLightButtonClick() {
+        updateThemePreferenceInSharedPreferences(false)
+        applyTheme(false)
     }
 }
