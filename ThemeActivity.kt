@@ -1,52 +1,84 @@
-import android.os.Bundle
-import androidx.appcomapat.app.AppCompatActivity
+package com.example.chunga_cash_app
+
 import android.content.SharedPreferences
-import androidx.preference.PreferenceManager
+import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
+import androidx.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatDelegate
 
 class ThemeActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_theme) // Change to xml layout file
+        setContentView(R.layout.activity_theme)
 
-        val themeSwitch = findViewById<SwitchComapat>(R.id.themeSwitch)
+        val themeSwitch = findViewById<SwitchCompat>(R.id.themeSwitch)
+        val darkButton = findViewById<Button>(R.id.darkButton)
+        val lightButton = findViewById<Button>(R.id.lightButton)
+
         // Fetch current theme preference and set the switch state (default: LightMode)
-        val isDarkModeEnabled = getThemePreferenceFromSharedPreference()
+        val isDarkModeEnabled = getThemePreferenceFromSharedPreferences()
         themeSwitch.isChecked = isDarkModeEnabled
 
-        // Listen for switch state changes and update theme preference accolrdingly
+        // Listen for switch state changes and update theme preference accordingly
         themeSwitch.setOnCheckedChangeListener { _, isChecked ->
             updateThemePreferenceInSharedPreferences(isChecked)
             applyTheme(isChecked)
         }
+
+        darkButton.setOnClickListener { onDarkButtonClick() }
+        lightButton.setOnClickListener { onLightButtonClick() }
     }
 
-    // Fuuntion to apply the selected  Theme
+    // Function to apply the selected Theme
     private fun applyTheme(isDarkModeEnabled: Boolean) {
-        if (isDarkModeEnabled) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        val mode = if (isDarkModeEnabled) {
+            AppCompatDelegate.MODE_NIGHT_YES
         } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            AppCompatDelegate.MODE_NIGHT_NO
         }
-        // Recreate the activity to apply the new theme immediately
-        recreate()
+        AppCompatDelegate.setDefaultNightMode(mode)
+
+        // Recreate the activity to apply the new theme immediately with a smooth transition
+        recreateWithTransition()
+    }
+
+    private fun recreateWithTransition() {
+        val intent = intent
+        finish()
+        startActivity(intent)
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 
     private fun getThemePreferenceFromSharedPreferences(): Boolean {
         val sharedPreferences: SharedPreferences =
-            PreferenceManager.getDefaultSharedPreference(this)
+            PreferenceManager.getDefaultSharedPreferences(this)
         // "theme_preference" is the key, false is the default value (light mode)
         return sharedPreferences.getBoolean("theme_preference", false)
     }
 
     // Function to Update theme preference in SharedPreferences
-    private fun updateThemePreferenceInSharedPreferences(isDarkEnablled: Boolean) {
+    private fun updateThemePreferenceInSharedPreferences(isDarkModeEnabled: Boolean) {
         val sharedPreferences: SharedPreferences =
             PreferenceManager.getDefaultSharedPreferences(this)
         val editor = sharedPreferences.edit()
         // "theme_preference" is the key to store the theme preference
         editor.putBoolean("theme_preference", isDarkModeEnabled)
         editor.apply()
+    }
+
+    // Method to handle Dark button click
+    private fun onDarkButtonClick() {
+        updateThemePreferenceInSharedPreferences(true)
+        applyTheme(true)
+    }
+
+    // Method to handle Light button click
+    private fun onLightButtonClick() {
+        updateThemePreferenceInSharedPreferences(false)
+        applyTheme(false)
     }
 }
