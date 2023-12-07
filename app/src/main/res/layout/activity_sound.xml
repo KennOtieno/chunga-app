@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Sound Activity">
+
+    <Spinner
+        android:id="@+id/soundSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"/>
+
+    <CheckBox
+        android:id="@+id/soundEnabledCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/soundSpinner"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Enable Sound"/>
+
+    <CheckBox
+        android:id="@+id/vibrationEnabledCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/soundEnabledCheckbox"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Enable Vibration"/>
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/vibrationEnabledCheckbox"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Save"/>
+</RelativeLayout>
