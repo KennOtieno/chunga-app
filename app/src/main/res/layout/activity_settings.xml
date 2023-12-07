@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/buttonAboutLegal"
-        android:text="App Version & Updates"
+        android:text="App Version &amp; Updates"
         android:layout_marginTop="16dp"/>
 
     <Button
