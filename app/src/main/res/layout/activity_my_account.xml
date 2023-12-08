@@ -1,0 +1,67 @@
+<!-- activity_my_account.xml -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MyAccountActivity">
+
+    <!-- Photo EditText -->
+    <EditText
+        android:id="@+id/photoEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Photo URL"/>
+
+    <!-- Name EditText -->
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/photoEditText"
+        android:layout_marginTop="16dp"
+        android:hint="Name"/>
+
+    <!-- Admin Number EditText -->
+    <EditText
+        android:id="@+id/adminNumEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nameEditText"
+        android:layout_marginTop="16dp"
+        android:inputType="number"
+        android:hint="Admin Number"/>
+
+    <!-- Class Stream EditText -->
+    <EditText
+        android:id="@+id/classStreamEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/adminNumEditText"
+        android:layout_marginTop="16dp"
+        android:hint="Class Stream"/>
+
+    <!-- Mpesa EditText -->
+    <EditText
+        android:id="@+id/mpesaEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/classStreamEditText"
+        android:layout_marginTop="16dp"
+        android:inputType="number"
+        android:hint="Mpesa"/>
+
+    <!-- Change Button -->
+    <Button
+        android:id="@+id/changeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mpesaEditText"
+        android:layout_marginTop="16dp"
+        android:text="Change"/>
+
+</RelativeLayout>
