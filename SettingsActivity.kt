@@ -2,36 +2,40 @@ package com.example.chunga_cash_app
 
 import android.os.Bundle
 import android.content.Intent
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_settings.*
+import com.example.chunga_cash_app.databinding.ActivitySettingsBinding
 
 class SettingsActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySettingsBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings) // xml layout
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view) // xml layout
 
-        buttonAboutLegal.setOnClickListener {
+        binding.buttonAboutLegal.setOnClickListener {
             // Opens AboutLegalActivity when cllcked
             startActivity(Intent(this, AboutLegalActivity::class.java))
         }
 
-        buttonAppVersionAndUpdates.setOnClickListener {
+        binding.buttonAppVersionAndUpdates.setOnClickListener {
             // Opens AppVersionAndUpdates Activity when clicked
             startActivity(Intent(this, AppVersionAndUpdatesActivity ::class.java))
         }
 
-        buttonHelpGuide.setOnClickListener {
+        binding.buttonHelpGuide.setOnClickListener {
             // Opens HelpGuideActivity when clicked
             startActivity(Intent(this, HelpGuideActivity::class.java))
         }
 
-        buttonNotification.setOnClickListener {
+        binding.buttonNotification.setOnClickListener {
             // Opens up NotificationPreferenceActivity when clicked by the user
             startActivity(Intent(this, NotificationActivity::class.java))
         }
 
-        buttonThemeCustomization.setOnClickListener {
+        binding.buttonThemeCustomization.setOnClickListener {
             // Opens up ThemeCustomizationActivity when clicked by the user
             startActivity(Intent(this, ThemeCustomizationActivity::class.java))
         }
