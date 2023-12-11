@@ -19,90 +19,72 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Email"
-        android:paddingLeft= "20dp"
+        android:paddingLeft="20dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="15dp"
-        android:inputType="textEmailAddress"
-        />
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <EditText
-        android:id="@+id/usernameEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Username"
-        android:paddingLeft= "20dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="15dp"
-        />
-
-    <EditText
-        android:id="@+id/passwordEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:paddingLeft= "20dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:inputType="textPassword"
-        android:layout_marginBottom="15dp"
-        />
-
-
-    <EditText
-        android:id="@+id/emailEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/passwordEditText"
-        android:hint="Email"
         android:inputType="textEmailAddress" />
 
-    <EditText
-        android:id="@+id/institutionNameEditText"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Institution"
-        android:paddingLeft= "20dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="15dp"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
-        android:paddingLeft="195dp"
-        android:paddingBottom="200dp">
+        android:layout_height="match_parent">
 
-        <Button
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/usernameEditText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save"/>
+            android:hint="Username"
+            android:paddingLeft="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="15dp" />
 
-        <Button
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cancel"/>
-    </LinearLayout>
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/institutionNameEditText"
-        android:text="Save" />
+            android:hint="Password"
+            android:paddingLeft="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:inputType="textPassword"
+            android:layout_marginBottom="15dp" />
 
-    <Button
-        android:id="@+id/cancelButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/institutionNameEditText"
-        android:layout_toRightOf="@+id/saveButton"
-        android:text="Cancel" />
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passwordEditText"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
 
-</RelativeLayout>
+        <EditText
+            android:id="@+id/institutionNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Institution"
+            android:paddingLeft="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="15dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="bottom">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Save" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cancel" />
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
