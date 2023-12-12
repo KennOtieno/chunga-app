@@ -2,9 +2,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.content.SharedPreferences
-import androidx.preference.PreferenceManager
+import android.preference.PreferenceManager
 import android.content.Intent
 import com.example.chunga_cash_app.PreferencesActivity
+import com.example.chunga_cash_app.R
 import com.example.chunga_cash_app.SoundActivity
 
 class NotificationActivity : AppCompatActivity() {
