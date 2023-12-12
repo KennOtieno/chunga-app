@@ -1,23 +1,22 @@
 package com.example.chunga_cash_app
 
 import android.os.Bundle
-import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import com.google.firebase.database.*
+import com.example.chunga_cash_app.databinding.ActivityPreferencesBinding
 
 class PreferencesActivity : AppCompatActivity() {
 
     // Notification ID for Chunga
     private val NOTIFICATION_ID = 1
+    private lateinit var binding: ActivityPreferencesBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_preferences) // XML layout
+        binding = ActivityPreferencesBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val updatesNotification = findViewById<Switch>(R.id.updatesNotification)
+        val updatesNotification = binding.updatesNotificationSwitch
 
         // Check the initial state of the switch
         if (updatesNotification.isChecked) {
@@ -46,7 +45,7 @@ class PreferencesActivity : AppCompatActivity() {
     private fun enableUpdatesNotifications() {
         // Show a notification to inform the user about the new update
         val notificationTitle = "New Update Available"
-        val notificationMessage = "A new version of Chunga Cash App is available. UPDATE NOW to get new improved features."
+        val notificationMessage = "A new version is available Update Now."
 
         // Call the function to display the notification
         showNotification(notificationTitle, notificationMessage)
