@@ -23,7 +23,7 @@ class MyAccountActivity : AppCompatActivity() {
         val studentKey = "adminNumText" // Student Key as in the DB
         databaseReference.child(studentKey).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val student = dataSnapshot.getValue(Student::class.java)
+                val student = dataSnapshot.getValue(Students::class.java)
 
                 if (student != null) {
                     // Display Student's Details in EditText
