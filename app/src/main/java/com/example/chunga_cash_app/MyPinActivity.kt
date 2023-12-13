@@ -4,29 +4,31 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
+import com.example.chunga_cash_app.databinding.ActivityMyPinBinding
 import com.google.firebase.database.*
 
 class MyPinActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMyPinBinding
     private lateinit var databaseReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_pin) // XML layout file
+        binding = ActivityMyPinBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Initialize firebase database
         databaseReference = FirebaseDatabase.getInstance().reference.child("students")
 
         // Fetch students data from the database
-        val studentKey = "adminNumText" // Official StudentKey as uded in the DB
+        val studentKey = "adminNumText" // Official StudentKey as used in the DB
         databaseReference.child(studentKey).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val student = dataSnapshot.getValue(Student::class.java)
 
                 if (student != null) {
                     // Display Student's Pin in Text View
-                    val pinTextView = findViewById<TextView>(R.id.pinTextView)
-                    pinTextView.text = student.pinCode
+                    binding.pinTextView.text = student.pinCode
                 } else {
                     // Show Toast when the data doesn't exist
                     Toast.makeText(this@MyPinActivity, "Does not Exist", Toast.LENGTH_SHORT).show()
