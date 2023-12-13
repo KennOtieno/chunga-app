@@ -31,13 +31,11 @@ class MyAccountActivity : AppCompatActivity() {
                     val nameEditText = findViewById<EditText>(R.id.nameEditText)
                     val adminNumEditText = findViewById<EditText>(R.id.adminNumEditText)
                     val classStreamEditText = findViewById<EditText>(R.id.classStreamEditText)
-                    val mpesaEditText = findViewById<EditText>(R.id.mpesaEditText)
 
                     photoEditText.setText(student.photo)
                     nameEditText.setText(student.name)
                     adminNumEditText.setText(student.adminNum.toString())
                     classStreamEditText.setText(student.classStream)
-                    mpesaEditText.setText(student.mpesa.toString())
 
                     // Change Button Click Listener
                     val changeButton = findViewById<Button>(R.id.changeButton)
@@ -49,7 +47,7 @@ class MyAccountActivity : AppCompatActivity() {
 
             override fun onCancelled(databaseError: DatabaseError) {
                 // Handle Errors
-                Toast.makeText(this@MyAccountActivity, "Error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MyAccountActivity, "An Error Occurred", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -74,7 +72,6 @@ class MyAccountActivity : AppCompatActivity() {
         val updatedName = findViewById<EditText>(R.id.nameEditText).text.toString()
         val updatedAdminNum = findViewById<EditText>(R.id.adminNumEditText).text.toString()
         val updatedClassStream = findViewById<EditText>(R.id.classStreamEditText).text.toString()
-        val updatedMpesa = findViewById<EditText>(R.id.mpesaEditText).text.toString()
 
         // I had to create a HashMap to represent the updated data
         val updatedData = hashMapOf<String, Any?>(
@@ -82,7 +79,6 @@ class MyAccountActivity : AppCompatActivity() {
             "name" to updatedName,
             "adminNum" to updatedAdminNum.toInt(), // This is an Int
             "classStream" to updatedClassStream,
-            "mpesa" to updatedMpesa.toInt() // It is also an integer
         )
 
         // Update the corresponding fields in the database
