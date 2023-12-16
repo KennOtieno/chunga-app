@@ -40,7 +40,7 @@ class ForgotPinActivity : AppCompatActivity() {
                         Toast.makeText(this@ForgotPinActivity, "Check or Change your Pin", Toast.LENGTH_SHORT).show()
                     } else {
                         // We show a Toast to the user saying that the Inputted Admin Password is Incorrect
-                        Toast.makeText(this@ForgotPinActivity, "Incorrect Admin Password! Try Again.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@ForgotPinActivity, "Incorrect Administrator Password! Try Again.", Toast.LENGTH_SHORT).show()
                     }
                 }
 
