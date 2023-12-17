@@ -5,21 +5,25 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import android.content.Intent
-import android.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.example.chunga_cash_app.databinding.ActivityForgotPinBinding
 import com.google.firebase.database.*
 
 class ForgotPinActivity : AppCompatActivity() {
 
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var binding: ActivityForgotPinBinding
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_forgot_pin) // XML Layout
+        binding = ActivityForgotPinBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view) // XML Layout
 
         // Initialise Firebase Database
         databaseReference = FirebaseDatabase.getInstance().reference.child("admin")
 
         // Find Views
-        val adminPasswordEditText = findViewById<EditText>(R.id.adminPasswordEditText)
+        val adminPasswordEditText = binding.adminPasswordEditText
         val okButton = findViewById<Button>(R.id.okButton)
 
         // Setting up Ok button On Click Listener
@@ -46,7 +50,7 @@ class ForgotPinActivity : AppCompatActivity() {
 
                 override fun onCancelled(databaseError: DatabaseError) {
                     // Handle DB Error
-                    Toast.makeText(this@ForgotPinActivity, "OOPS! An Error Occured.Try Again." Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@ForgotPinActivity, "OOPS! An Error Occured.Try Again.", Toast.LENGTH_SHORT).show()
                 }
             })
         }
