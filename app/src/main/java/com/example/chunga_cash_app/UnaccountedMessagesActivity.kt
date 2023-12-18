@@ -3,15 +3,19 @@ package com.example.chunga_cash_app
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
+import com.example.chunga_cash_app.databinding.ActivityUnaccountedMessagesBinding
 import com.google.firebase.database.*
 
 class UnaccountedMessagesActivity : AppCompatActivity() {
 
     private lateinit var messagesTextView: TextView
+    private lateinit var binding: ActivityUnaccountedMessagesBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_unaccounted_messages) // XML LAYOUT
+        binding = ActivityUnaccountedMessagesBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view) // XML LAYOUT
 
         messagesTextView = findViewById(R.id.messagesTextView) // I am Assuming we have a TextView in XML layout, CHECK ON THIS
 
