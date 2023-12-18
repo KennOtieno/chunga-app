@@ -8,16 +8,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import androidx.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatDelegate
+import com.example.chunga_cash_app.databinding.ActivityThemeBinding
 
 class ThemeActivity : AppCompatActivity() {
+    private lateinit var binding : ActivityThemeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_theme)
+        binding = ActivityThemeBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         val themeSwitch = findViewById<SwitchCompat>(R.id.themeSwitch)
-        val darkButton = findViewById<Button>(R.id.darkButton)
-        val lightButton = findViewById<Button>(R.id.lightButton)
+        val darkButton = binding.darkButton
+        val lightButton = binding.lightButton
 
         // Fetch current theme preference and set the switch state (default: LightMode)
         val isDarkModeEnabled = getThemePreferenceFromSharedPreferences()
