@@ -1,22 +1,31 @@
 package com.example.chunga_cash_app
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
+import com.example.chunga_cash_app.databinding.ActivityStudentAccountBinding
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 import java.awt.PopupMenu
 
 class StudentAccountActivity : AppCompatActivity() {
 
     private lateinit var databaseReference: DatabaseReference
-    private lateinit var student: Student
+    private lateinit var student: Students
+    private lateinit var binding: ActivityStudentAccountBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_student_account)
+        binding = ActivityStudentAccountBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         // Initialize Firebase Database Reference
         databaseReference = FirebaseDatabase.getInstance().reference.child("students")
@@ -25,17 +34,17 @@ class StudentAccountActivity : AppCompatActivity() {
         val studentKey = "adminNumText" // This is the actual key in the DB.
         databaseReference.child(studentKey).addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                student = dataSnapshot.getValue(Student::class.java) ?: Student()
+                student = dataSnapshot.getValue(Students::class.java) ?: Students()
 
                 // Display Student Information
-                val photoImageView: ImageView = findViewById(R.id.photoImageView)
+                val photoImageView: ImageView = binding.photoImageView
                 // Loading Image with picasso
                 Picasso.get().load(student.photo).into(photoImageView)
 
-                val nameTextView = findViewById<TextView>(R.id.nameTextView)
-                val classStreamTextView = findViewById<TextView>(R.id.classStreamTextView)
-                val adminNumTextView = findViewById<TextView>(R.id.adminNumTextView)
-                val accountBalanceTextView = findViewById<TextView>(R.id.accountBalanceTextView)
+                val nameTextView = binding.nameTextView
+                val classStreamTextView = binding.classStreamTextView
+                val adminNumTextView = binding.adminNumTextView
+                val accountBalanceTextView = binding.accountBalanceTextView
 
                 nameTextView.text = student.name
                 classStreamTextView.text = student.classStream
@@ -43,25 +52,25 @@ class StudentAccountActivity : AppCompatActivity() {
                 accountBalanceTextView.text = student.accountBalance.toString()
 
                 // BACK Button
-                val backButton: Button = findViewById(R.id.backButton)
+                val backButton: Button = binding.backButton
                 backButton.setOnClickListener {
-                    onBackPressed()
+                    onBackPressed() // deprecated || might need to use getOnBackPressedDispatcher()
                 }
 
                 // DEPOSIT  Button
-                val depositButton: Button = findViewById(R.id.depositButton)
+                val depositButton: Button = binding.depositButton
                 depositButton.setOnClickListener {
                     showInputDialog(true)
                 }
 
                 // WITHDRAW Button
-                val withdrawButton: Button = findViewById(R.id.withdrawButton)
+                val withdrawButton: Button = binding.withdrawButton
                 withdrawButton.setOnClickListener {
                     showInputDialog(false)
                 }
 
                 // Drop-down menu Button
-                val menuButton = Button = findViewById(R.id.menuButton)
+                val menuButton : Button = binding.menuButton
                 menuButton.setOnClickListener {
                     showPopupMenu(menuButton)
                 }

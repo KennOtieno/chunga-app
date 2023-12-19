@@ -24,11 +24,11 @@ class MyPinActivity : AppCompatActivity() {
         val studentKey = "adminNumText" // Official StudentKey as used in the DB
         databaseReference.child(studentKey).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val student = dataSnapshot.getValue(Student::class.java)
+                val student = dataSnapshot.getValue(Students::class.java)
 
                 if (student != null) {
                     // Display Student's Pin in Text View
-                    binding.pinTextView.text = student.pinCode
+                    binding.pinTextView.text = student.pinCode.toString()
                 } else {
                     // Show Toast when the data doesn't exist
                     Toast.makeText(this@MyPinActivity, "Does not Exist", Toast.LENGTH_SHORT).show()

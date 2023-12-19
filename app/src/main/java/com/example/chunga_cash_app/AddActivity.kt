@@ -58,7 +58,7 @@ class AddActivity : AppCompatActivity() {
 
                 // Create Student object with user input data
                 val studentId = databaseReference.push().key
-                val student = Students(studentName, admissionNumberInt, classAndStream, pinCodeInt, accountBalanceInt, facePhoto, mpesaNumber)
+                val student = Students(studentName, admissionNumberInt, classAndStream, pinCodeInt, accountBalanceInt, facePhoto)
 
                 // Save student object to the database
                 if (studentId != null) {

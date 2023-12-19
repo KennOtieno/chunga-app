@@ -8,16 +8,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 import android.widget.Toast
 import android.widget.ImageView
+import com.example.chunga_cash_app.databinding.ActivityStudentCheckInBinding
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 
 class StudentCheckInActivity : AppCompatActivity() {
 
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var binding : ActivityStudentCheckInBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_student_check_in)
+        binding = ActivityStudentCheckInBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         // Initialize Firebase database reference
         databaseReference = FirebaseDatabase.getInstance().reference.child("students")
@@ -26,7 +30,7 @@ class StudentCheckInActivity : AppCompatActivity() {
         val studentKey = "adminNumText" // The actual student key
         databaseReference.child(studentKey).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val student = dataSnapshot.getValue(Student::class.java)
+                val student = dataSnapshot.getValue(Students::class.java)
 
                 if (student != null) {
                     // Display Student Information

@@ -7,14 +7,18 @@ import android.content.Intent
 import com.example.chunga_cash_app.PreferencesActivity
 import com.example.chunga_cash_app.R
 import com.example.chunga_cash_app.SoundActivity
+import com.example.chunga_cash_app.databinding.ActivityNotificationBinding
 
 class NotificationActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityNotificationBinding
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_notification) // xml layout file
+        binding = ActivityNotificationBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view) // xml layout file
 
-        val preferencesButton = findViewById<Button>(R.id.preferencesButton)
-        val soundNotificationButton = findViewById<Button>(R.id.soundNotificationButton)
+        val preferencesButton = binding.preferencesButton
+        val soundNotificationButton = binding.soundNotificationButton
 
         preferencesButton.setOnClickListener {
             // Opens preferences activity when clicked

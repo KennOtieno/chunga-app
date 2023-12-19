@@ -3,6 +3,8 @@ package com.example.chunga_cash_app
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.example.chunga_cash_app.databinding.ActivityPreferencesBinding
 
 class PreferencesActivity : AppCompatActivity() {
@@ -14,7 +16,8 @@ class PreferencesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPreferencesBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        val view = binding.root
+        setContentView(view)
 
         val updatesNotification = binding.updatesNotificationSwitch
 
