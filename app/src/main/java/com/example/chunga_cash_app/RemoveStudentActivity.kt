@@ -3,6 +3,8 @@ package com.example.chunga_cash_app
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
@@ -10,38 +12,59 @@ import com.google.firebase.database.*
 class RemoveStudentActivity : AppCompatActivity() {
 
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var admissionNumberEditText: EditText
+    private lateinit var okButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_remove_student)
 
-        val searchButton: Button = findViewById(R.id.searchButton)
+        // Initialize Database
+        databaseReference = FirebaseDatabase.getInstance().reference.child("students")
 
-        searchButton.setOnClickListener {
+        admissionNumberEditText = findViewById(R.id.admissionNumberEditText)
+        okButton = findViewById(R.id.okButton)
+
+        okButton.setOnClickListener {
+            // Get the admission number entered by the user
+            val admissionNumber = admissionNumberEditText.text.toString()
+
             // Implement logic to search for the student in Firebase
-            // Display student information (name, admission number, class, photo)
-
-            // Show a dialog to confirm account deletion
-            showDeleteConfirmationDialog()
+            searchForStudent(admissionNumber)
         }
     }
 
-    private fun showDeleteConfirmationDialog() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Delete Student Account")
-            .setMessage("Are you sure you want to delete this student's account?")
-            .setPositiveButton("Yes") { _, _ ->
-                // User clicked Yes, navigate to RemoveConfirmationActivity
-                val intent = Intent(this, RemoveConfirmationActivity::class.java)
-                // Pass necessary data to RemoveConfirmationActivity if needed
-                startActivity(intent)
-            }
-            .setNegativeButton("No") { _, _ ->
-                // User clicked No, go back to the main activity
-                finish()
-            }
+    private fun searchForStudent(admissionNumber: String) {
+        // Query Firebase to check if the admission number exists
+        databaseReference.child(admissionNumber)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        // Student exists, show RemoveConfirmationActivity
+                        val intent = Intent(
+                            this@RemoveStudentActivity,
+                            RemoveConfirmationActivity::class.java
+                        )
+                        // Pass necessary data to RemoveConfirmationActivity if needed
+                        startActivity(intent)
+                    } else {
+                        // Student does not exist, show a toast
+                        Toast.makeText(
+                            this@RemoveStudentActivity,
+                            "Admission number does not exist",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
 
-        val dialog = builder.create()
-        dialog.show()
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle the error, if any
+                    Toast.makeText(
+                        this@RemoveStudentActivity,
+                        "Error: An Error Occured Try Again.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
     }
 }
