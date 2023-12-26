@@ -10,45 +10,48 @@ import com.google.firebase.database.*
 
 class SearchActivity : AppCompatActivity() {
 
-    private lateinit var databaseReference: DatabaseReference
     private lateinit var searchEditText: EditText
+    private lateinit var okButton: Button
+    private lateinit var databaseReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Students")
-        searchEditText = findViewById(R.id.editTextAdminNumber)
-        val okButton: Button = findViewById(R.id.buttonOk)
+        searchEditText = findViewById(R.id.editTextAdmission)
+        okButton = findViewById(R.id.buttonOK)
+
+        // Firebase Realtime Database reference
+        databaseReference = FirebaseDatabase.getInstance().getReference("students")
 
         okButton.setOnClickListener {
-            val adminNumInput = searchEditText.text.toString().trim()
+            val admissionNumber = searchEditText.text.toString().trim()
 
-            if (adminNumInput.isNotEmpty()) {
-                checkAdmissionNumber(adminNumInput)
+            if (admissionNumber.isNotEmpty()) {
+                searchStudent(admissionNumber)
             } else {
-                showToast("Please enter Admission Number")
+                showToast("Please enter an admission number")
             }
         }
     }
 
-    private fun checkAdmissionNumber(adminNumInput: String) {
-        databaseReference.child(adminNumInput).addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    // Admission Number exists, go to ShowStudentDetails activity
-                    val intent = Intent(this@SearchActivity, ShowStudentDetails::class.java)
-                    intent.putExtra("adminNumber", adminNumInput)
+    private fun searchStudent(admissionNumber: String) {
+        val query = databaseReference.orderByChild("admissionNumber").equalTo(admissionNumber)
+
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Admission number exists, navigate to DiscoverStudentActivity
+                    val intent = Intent(this@SearchActivity, DiscoverStudentActivity::class.java)
+                    intent.putExtra("admissionNumber", admissionNumber)
                     startActivity(intent)
-                    finish()
                 } else {
-                    // Admission Number does not exist, show a toast
-                    showToast("Admission Number does not exist")
+                    showToast("Admission Number Does Not Exist")
                 }
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                showToast("Error checking Admission Number: ${error.message}")
+            override fun onCancelled(databaseError: DatabaseError) {
+                showToast("Error occurred: ${databaseError.message}")
             }
         })
     }
