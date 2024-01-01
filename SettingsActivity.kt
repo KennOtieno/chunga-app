@@ -15,19 +15,9 @@ class SettingsActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view) // xml layout
 
-        binding.buttonAboutLegal.setOnClickListener {
-            // Opens AboutLegalActivity when cllcked
-            startActivity(Intent(this, AboutLegalActivity::class.java))
-        }
-
         binding.buttonAppVersionAndUpdates.setOnClickListener {
             // Opens AppVersionAndUpdates Activity when clicked
             startActivity(Intent(this, AppVersionAndUpdatesActivity ::class.java))
-        }
-
-        binding.buttonHelpGuide.setOnClickListener {
-            // Opens HelpGuideActivity when clicked
-            startActivity(Intent(this, HelpGuideActivity::class.java))
         }
 
         binding.buttonNotification.setOnClickListener {
