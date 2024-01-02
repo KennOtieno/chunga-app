@@ -4,33 +4,17 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/buttonAboutLegal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="About Legal"
-        android:layout_marginTop="16dp"/>
-
-    <Button
         android:id="@+id/buttonAppVersionAndUpdates"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonAboutLegal"
-        android:text="App Version &amp; Updates"
-        android:layout_marginTop="16dp"/>
-
-    <Button
-        android:id="@+id/buttonHelpGuide"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonAppVersionAndUpdates"
-        android:text="Help Guide"
+        android:text="App Version and Updates"
         android:layout_marginTop="16dp"/>
 
     <Button
         android:id="@+id/buttonNotification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonHelpGuide"
+        android:layout_below="@+id/buttonAppVersionAndUpdates"
         android:text="Notification"
         android:layout_marginTop="16dp"/>
 
