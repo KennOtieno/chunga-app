@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.chunga_cash_app.databinding.ActivityDiscoverStudentBinding
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 
@@ -15,10 +16,13 @@ class DiscoverStudentActivity : AppCompatActivity() {
     private lateinit var classStreamTextView: TextView
 
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var binding: ActivityDiscoverStudentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_discover_student)
+        binding = ActivityDiscoverStudentBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         studentPhotoImageView = findViewById(R.id.imageViewStudentPhoto)
         studentNameTextView = findViewById(R.id.textViewStudentName)
