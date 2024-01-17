@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_my_transactions"
+            android:title="My Transactions"
+            android:icon="@drawable/transactions_icon"
+            />
+        <item
+            android:id="@+id/menu_my_account"
+            android:title="My Account"
+            android:icon="@drawable/admin_account_icon"
+            />
+        <item
+            android:id="@+id/menu_my_pin"
+            android:title="My Pin"
+            android:icon="@drawable/pin_icon"
+            />
+    </group>
+</menu>

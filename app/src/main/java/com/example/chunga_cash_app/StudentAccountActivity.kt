@@ -14,13 +14,16 @@ import androidx.appcompat.widget.PopupMenu
 import com.example.chunga_cash_app.databinding.ActivityStudentAccountBinding
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
-import java.awt.PopupMenu
+//import java.awt.PopupMenu
 
 class StudentAccountActivity : AppCompatActivity() {
 
     private lateinit var databaseReference: DatabaseReference
     private lateinit var student: Students
     private lateinit var binding: ActivityStudentAccountBinding
+    private val studentKey = "adminNumText" // This is the actual key in the DB.
+    val accountBalanceTextView = binding.accountBalanceTextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityStudentAccountBinding.inflate(layoutInflater)
@@ -31,7 +34,6 @@ class StudentAccountActivity : AppCompatActivity() {
         databaseReference = FirebaseDatabase.getInstance().reference.child("students")
 
         // Fetch Student Data from database
-        val studentKey = "adminNumText" // This is the actual key in the DB.
         databaseReference.child(studentKey).addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 student = dataSnapshot.getValue(Students::class.java) ?: Students()
