@@ -1,0 +1,33 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="adminViewModel"
+            type="com.example.chunga_cash_app.AdminViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AdministratorAccountActivity">
+
+        <Button
+            android:id="@+id/changeDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change Details"
+            android:onClick="@{() -> adminViewModel.onChangeDetailsClicked()}" />
+
+        <Button
+            android:id="@+id/enrollmentAndSavings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enrollment and Savings"
+            android:onClick="@{() -> adminViewModel.onEnrollmentAndSavingsClicked()}" />
+
+        <!-- Add other UI components and bindings as needed -->
+
+    </RelativeLayout>
+</layout>
