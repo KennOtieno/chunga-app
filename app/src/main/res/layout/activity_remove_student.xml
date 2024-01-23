@@ -3,20 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/appVersionTextView"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/app_version"/>
+        android:id="@+id/admissionNumberEditText"
+        />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/updateButton"/>
-
-
+        android:id="@+id/okButton"
+        android:text="ok"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

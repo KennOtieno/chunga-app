@@ -18,7 +18,7 @@ class AppVersionAndUpdatesActivity : AppCompatActivity() {
 
         // Dynamically setting the current app version
         val currentAppVersion = getAppVersion()
-        binding.appVersionTextView.text = getString(R.string.app_version, currentAppVersion)
+        binding.appVersionTextView.text = getString(binding.app_version, currentAppVersion)
 
         // Button click listener to navigate to UpdatesActivity
         binding.updateButton.setOnClickListener {

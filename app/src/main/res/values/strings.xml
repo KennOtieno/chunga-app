@@ -2,4 +2,5 @@
     <string name="app_name">chunga_cash_app</string>
     <string name="nav_drawer_open">Open Navigation Drawer</string>
     <string name="nav_drawer_close">Close Navigation Drawer</string>
+    <string name="forgot_password">Forgot Password</string>
 </resources>

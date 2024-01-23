@@ -3,20 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/appVersionTextView"/>
+        android:id="@+id/imageViewStudentPhoto"
+        />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/app_version"/>
+        android:id="@+id/textViewStudentName"/>
 
-    <Button
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/updateButton"/>
+        android:id="@+id/textViewAdmissionNumber"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/textViewClassStream"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
